@@ -1,7 +1,19 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+
+import Hero from '@/components/sections/Hero.astro';
+import About from '@/components/sections/About.astro';
+import Stack from '@/components/sections/Stack.astro';
+import Howto from '@/components/sections/Howto.astro';
+import Claim from '@/components/sections/Claim.astro';
+import Social from '@/components/sections/Social.astro';
 ---
 
-<BaseLayout>
-  <h1>Hello World</h1>
+<BaseLayout title="Aurelio Franco">
+  <Hero />
+  <About />
+  <Howto />
+  <Stack />
+  <Claim />
+  <Social />
 </BaseLayout>
