@@ -1,5 +1,5 @@
 {
-  "name": "astro-temp",
+  "name": "aureliofranco-com",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,7 +9,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint .",
+    "format": "prettier . --write",
+    "typecheck": "astro check"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.7",
@@ -20,5 +23,17 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@eslint/js": "^10.0.1",
+    "astro-eslint-parser": "^1.4.0",
+    "eslint": "^10.5.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.1"
   }
 }
