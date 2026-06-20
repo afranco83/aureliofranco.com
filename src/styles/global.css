@@ -10,9 +10,9 @@
   --color-background: #ffffff;
   --color-foreground: #111111;
 
-  --color-muted: #666666;
-  --color-subtle: #888888;
-  --color-border: #e5e5e5;
+  --color-subtle: #666666;
+  --color-gray: #888888;
+  --color-muted: #c4c1c1;
 
   /* Aurum */
   --color-accent: #c28a2e;
