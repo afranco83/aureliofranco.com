@@ -1,3 +1,16 @@
-<div class="container">
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+interface Props extends HTMLAttributes<'div'> {
+  className?: string;
+}
+
+const { className, ...rest } = Astro.props;
+const baseClassName = 'container';
+const fullClassName = twMerge(baseClassName, className);
+---
+
+<div class={fullClassName} {...rest}>
   <slot />
 </div>

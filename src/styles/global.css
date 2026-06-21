@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
 
 @import 'tailwindcss';
 
@@ -43,10 +43,4 @@
     background-color: var(--color-accent-soft);
     color: var(--color-foreground);
   }
-}
-
-@utility container {
-  margin-inline: auto;
-  max-width: 72rem;
-  padding-inline: 1.5rem;
 }
