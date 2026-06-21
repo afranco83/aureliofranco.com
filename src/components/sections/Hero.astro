@@ -1,9 +1,30 @@
 ---
 import Container from '../ui/Container.astro';
+import { Image } from 'astro:assets';
+import aurelioFrancoImg from '../../assets/images/hero/aureliofranco.webp';
 ---
 
-<section id="hero">
-  <Container>
-    <h1>Hero</h1>
+<section
+  id="hero"
+  class="flex items-center justify-center bg-black h-auto p-9 lg:h-screen"
+>
+  <Container
+    className="h-full p-0 flex flex-col justify-center items-center gap-12 lg:flex-row"
+  >
+    <div class="h-auto text-center lg:text-left">
+      <h1 class="text-white text-5xl font-extrabold lg:text-6xl xl:text-7xl">
+        Aurelio Franco
+      </h1>
+      <p class="text-accent text-3xl font-extralight lg:text-4xl">
+        De la idea a la interfaz
+      </p>
+    </div>
+    <Image
+      src={aurelioFrancoImg}
+      alt="Aurelio Franco"
+      width={958}
+      height={958}
+      class="max-w-[472px] max-h-[472px] h-auto aspect-square"
+    />
   </Container>
 </section>
