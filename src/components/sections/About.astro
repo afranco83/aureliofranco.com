@@ -4,10 +4,38 @@ import Heading from '../ui/Heading.astro';
 ---
 
 <section id="about">
-  <Container>
+  <Container className="flex flex-col gap-16">
     <Heading
       title="Sobre mí"
       description="Frontend Engineering impulsado por IA, visión de producto y liderazgo de proyectos"
     />
+    <div class="grid gap-5 text-lg text-justify md:gap-18 lg:grid-cols-2">
+      <div class="flex flex-col gap-5">
+        <p>
+          A lo largo de mi trayectoria profesional he trabajado en <strong
+            >frontend, producto, UI/UX, SEO y gestión de proyectos</strong
+          >, desarrollando una visión transversal que me permite entender los
+          productos como sistemas completos y no solo como desarrollos técnicos.
+        </p>
+        <p>
+          Esta combinación me permite moverme con naturalidad entre la visión de
+          negocio y la ejecución, participando tanto en la definición de la
+          estrategia como en la construcción de soluciones digitales útiles,
+          escalables y sostenibles.
+        </p>
+      </div>
+      <div class="flex flex-col gap-5">
+        <p>
+          Actualmente combino <strong
+            >desarrollo frontend moderno e inteligencia artificial</strong
+          > para acelerar procesos, optimizar la toma de decisiones y aumentar la
+          capacidad de entrega de equipos y proyectos.
+        </p>
+        <p>
+          Me motiva transformar ideas complejas en productos digitales claros,
+          eficientes y centrados en las personas.
+        </p>
+      </div>
+    </div>
   </Container>
 </section>
