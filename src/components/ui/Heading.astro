@@ -1,0 +1,28 @@
+---
+type Props = {
+  title: string;
+  description?: string;
+  align?: 'left' | 'center' | 'right';
+};
+
+const { title, description, align = 'left' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'flex flex-col gap-5',
+    { 'justify-center items-center': align === 'center' },
+    { 'justify-end items-end': align === 'right' },
+  ]}
+>
+  <h2 class="text-5xl text-foreground font-black">{title}</h2>
+  <p
+    class:list={[
+      'text-2xl text-accent md:w-1/2',
+      { 'text-center': align === 'center' },
+      { 'text-right': align === 'right' },
+    ]}
+  >
+    {description}
+  </p>
+</div>
