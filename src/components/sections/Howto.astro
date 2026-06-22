@@ -1,9 +1,83 @@
 ---
 import Container from '../ui/Container.astro';
+import IconCard from '../ui/IconCard.astro';
+import Heading from '../ui/Heading.astro';
+
+import type { IconName } from '../../types/icons.ts';
+
+type Items = {
+  id: number;
+  icon: IconName;
+  title: string;
+  description?: string;
+};
+
+const ITEMS: Items[] = [
+  {
+    id: 1,
+    icon: 'Glass',
+    title: 'Visión estratégica',
+    description:
+      'Analizo el contexto, identifico oportunidades y <strong>alineo tecnología, producto y negocio</strong> para avanzar con una dirección clara.',
+  },
+  {
+    id: 2,
+    icon: 'Chemistry',
+    title: 'Mentalidad de producto',
+    description:
+      'Tomo decisiones pensando en el <strong>valor generado para usuarios, equipos y organizaciones</strong>, más allá de la implementación técnica.',
+  },
+  {
+    id: 3,
+    icon: 'LeaderDuotone',
+    title: 'Liderazgo transversal',
+    description:
+      'Facilito la <strong>colaboración entre negocio, producto, diseño y desarrollo</strong> para convertir ideas en resultados.',
+  },
+  {
+    id: 4,
+    icon: 'LaptopDuotone',
+    title: 'Excelencia técnica',
+    description:
+      'Diseño y desarrollo <strong>soluciones frontend modernas, mantenibles</strong> y preparadas para evolucionar.',
+  },
+  {
+    id: 5,
+    icon: 'Ai',
+    title: 'IA aplicada',
+    description:
+      'Integro <strong>inteligencia artificial</strong> en los procesos de investigación, desarrollo y toma de decisiones para aumentar la eficiencia y la capacidad de entrega.',
+  },
+  {
+    id: 6,
+    icon: 'ChartLight',
+    title: 'Orientación a resultados',
+    description:
+      'Priorizo el impacto, la simplicidad y la <strong>entrega de valor</strong> por encima de la complejidad innecesaria.',
+  },
+];
 ---
 
 <section id="how-to">
-  <Container>
-    <h1>Como trabajo</h1>
+  <Container className="flex flex-col gap-16">
+    <Heading
+      title="Cómo trabajo"
+      description="Lo que aporto a cada proyecto"
+      align="center"
+    />
+    <div
+      class="grid grid-cols-1 gap-9 md:grid-cols-2 md:gap-11 lg:grid-cols-3 lg:gap-16"
+    >
+      {
+        ITEMS.map((item) => (
+          <IconCard
+            icon={item.icon}
+            title={item.title}
+            description={item.description}
+            align="center"
+          />
+        ))
+      }
+    </div>
   </Container>
 </section>
