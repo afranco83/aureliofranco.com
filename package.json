@@ -14,7 +14,10 @@
     "format": "prettier . --write",
     "typecheck": "astro check",
     "prepare": "husky",
-    "commit": "cz"
+    "commit": "cz",
+    "build-icons": "node build-sprite.mjs",
+    "predev": "pnpm build-icons",
+    "prebuild": "pnpm build-icons"
   },
   "config": {
     "commitizen": {
