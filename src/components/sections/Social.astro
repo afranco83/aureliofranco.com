@@ -1,9 +1,50 @@
 ---
+import type { IconName } from '@/types/icons';
 import Container from '../ui/Container.astro';
+import Icon from '../ui/Icon.astro';
+
+type Items = {
+  id: number;
+  icon: IconName;
+  href: string;
+};
+
+const ITEMS: Items[] = [
+  {
+    id: 1,
+    icon: 'Whatsapp',
+    href: '#',
+  },
+  {
+    id: 2,
+    icon: 'Linkedin',
+    href: 'www.linkedin.com/in/aureliofranco',
+  },
+  {
+    id: 3,
+    icon: 'Github',
+    href: 'https://github.com/afranco83/aureliofranco.com',
+  },
+  {
+    id: 3,
+    icon: 'Message',
+    href: 'mailto:info@aureliofranco.com',
+  },
+];
 ---
 
-<section id="socila">
+<section id="social">
   <Container>
-    <h1>Social</h1>
+    <ul class="flex justify-center gap-8 mb-32">
+      {
+        ITEMS.map((item) => (
+          <li>
+            <a class="hover:text-accent" href={item.href} target="_blank">
+              <Icon name={item.icon} size="xl" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </Container>
 </section>
