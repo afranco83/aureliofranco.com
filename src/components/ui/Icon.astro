@@ -1,33 +1,31 @@
 ---
 import type { IconName } from '../../types/icons.ts';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   name: IconName;
-  class?: string;
+  className?: string;
   title?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
   variant?: 'plain' | 'square';
 };
 
-const {
-  name,
-  class: className = 'size-6',
-  size = 'xs',
-  title,
-  variant = 'plain',
-} = Astro.props;
+const { name, className, size = 'xs', title, variant = 'plain' } = Astro.props;
 ---
 
 <svg
   class:list={[
-    { 'size-6': size === 'xs' },
-    { 'size-8': size === 'md' },
-    { 'size-10': size === 'lg' },
-    { 'size-12': size === 'xl' },
-    { 'size-14': size === '2xl' },
-    { 'size-16': size === '3xl' },
-    { 'border p-2.5 rounded-xl': variant === 'square' },
-    className,
+    twMerge(
+      size === 'xs' && 'size-6',
+      size === 'md' && 'size-8',
+      size === 'lg' && 'size-10',
+      size === 'xl' && 'size-12',
+      size === '2xl' && 'size-14',
+      size === '3xl' && 'size-16',
+      variant === 'square' && 'border p-2.5 rounded-xl',
+      'shrink-0',
+      className,
+    ),
   ]}
   fill="none"
   aria-hidden={title ? undefined : 'true'}
