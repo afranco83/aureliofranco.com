@@ -44,29 +44,31 @@ const ITEMS: Items[] = [
 ---
 
 <section id="stack">
-  <Container
-    className="grid grid-cols-2 gap-18 justify-center items-center bg-accent-soft p-16 rounded-2xl lg:flex-row"
-  >
-    <Heading
-      title="Tecnologías y enfoque"
-      titleClassName="text-accent text-4xl"
-      description="Mi trabajo se apoya en una combinación de tecnologías modernas, pensamiento de producto e inteligencia artificial aplicada para transformar ideas en productos digitales escalables y sostenibles."
-      descriptionClassName="text-accent-dark text-xl md:w-full"
-    />
-    <div class="flex flex-col gap-10 bg-accent-dark p-8 rounded-2xl">
-      {
-        ITEMS.map((item) => (
-          <IconCard
-            icon={item.icon}
-            iconClassName="text-white"
-            title={item.title}
-            titleClassName="text-white text-xl"
-            description={item.description}
-            descriptionClassName="text-white text-base"
-            variant="list"
-          />
-        ))
-      }
+  <Container>
+    <div
+      class="grid grid-cols-1 gap-18 justify-center items-center bg-accent-soft p-10 rounded-2xl lg:grid-cols-2"
+    >
+      <Heading
+        title="Tecnologías y enfoque"
+        titleClassName="text-accent text-4xl"
+        description="Mi trabajo se apoya en una combinación de tecnologías modernas, pensamiento de producto e inteligencia artificial aplicada para transformar ideas en productos digitales escalables y sostenibles."
+        descriptionClassName="text-accent-dark text-xl md:w-full"
+      />
+      <div class="flex flex-col gap-10 bg-accent-dark p-8 rounded-2xl">
+        {
+          ITEMS.map((item) => (
+            <IconCard
+              icon={item.icon}
+              iconClassName="text-white"
+              title={item.title}
+              titleClassName="text-white text-xl"
+              description={item.description}
+              descriptionClassName="text-white text-base"
+              variant="list"
+            />
+          ))
+        }
+      </div>
     </div>
   </Container>
 </section>
