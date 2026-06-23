@@ -1,9 +1,18 @@
 ---
 import Container from '../ui/Container.astro';
+import Heading from '../ui/Heading.astro';
 ---
 
 <section id="stack">
-  <Container>
-    <h1>Stack</h1>
+  <Container
+    className="flex flex-col bg-accent-soft p-16 rounded-2xl lg:flex-row"
+  >
+    <Heading
+      title="Tecnologías y enfoque"
+      titleClassName="text-accent text-4xl"
+      description="Mi trabajo se apoya en una combinación de tecnologías modernas, pensamiento de producto e inteligencia artificial aplicada para transformar ideas en productos digitales escalables y sostenibles."
+      descriptionClassName="text-accent-dark text-xl"
+    />
+    <div class="bg-accent p-8 rounded-2xl"></div>
   </Container>
 </section>
