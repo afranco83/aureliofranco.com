@@ -18,21 +18,21 @@ const ITEMS: Items[] = [
     icon: 'Glass',
     title: 'Visión estratégica',
     description:
-      'Analizo el contexto, identifico oportunidades y <strong>alineo tecnología, producto y negocio</strong> para avanzar con una dirección clara.',
+      '<p>Analizo el contexto, identifico oportunidades y <strong>alineo tecnología, producto y negocio</strong> para avanzar con una dirección clara.</p>',
   },
   {
     id: 2,
     icon: 'Chemistry',
     title: 'Mentalidad de producto',
     description:
-      'Tomo decisiones pensando en el <strong>valor generado para usuarios, equipos y organizaciones</strong>, más allá de la implementación técnica.',
+      '<p>Tomo decisiones pensando en el <strong>valor generado para usuarios, equipos y organizaciones</strong>, más allá de la implementación técnica.</p>',
   },
   {
     id: 3,
     icon: 'LeaderDuotone',
     title: 'Liderazgo transversal',
     description:
-      'Facilito la <strong>colaboración entre negocio, producto, diseño y desarrollo</strong> para convertir ideas en resultados.',
+      '<p>Facilito la <strong>colaboración entre negocio, producto, diseño y desarrollo</strong> para convertir ideas en resultados.</p>',
   },
   {
     id: 4,
@@ -46,14 +46,14 @@ const ITEMS: Items[] = [
     icon: 'Ai',
     title: 'IA aplicada',
     description:
-      'Integro <strong>inteligencia artificial</strong> en los procesos de investigación, desarrollo y toma de decisiones para aumentar la eficiencia y la capacidad de entrega.',
+      '<p>Integro <strong>inteligencia artificial</strong> en los procesos de investigación, desarrollo y toma de decisiones para aumentar la eficiencia y la capacidad de entrega.</p>',
   },
   {
     id: 6,
     icon: 'ChartLight',
     title: 'Orientación a resultados',
     description:
-      'Priorizo el impacto, la simplicidad y la <strong>entrega de valor</strong> por encima de la complejidad innecesaria.',
+      '<p>Priorizo el impacto, la simplicidad y la <strong>entrega de valor</strong> por encima de la complejidad innecesaria.</p>',
   },
 ];
 ---
@@ -75,6 +75,7 @@ const ITEMS: Items[] = [
             title={item.title}
             description={item.description}
             align="center"
+            variant="stacked"
           />
         ))
       }

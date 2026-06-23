@@ -1,27 +1,62 @@
 ---
 import Icon from '../ui/Icon.astro';
 import type { IconName } from '../../types/icons.ts';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   icon: IconName;
+  iconClassName?: string;
   title: string;
+  titleClassName?: string;
   description?: string;
-  align: 'left' | 'center';
+  descriptionClassName?: string;
+  align?: 'left' | 'center';
+  variant?: 'stacked' | 'list';
 };
 
-const { icon, title, description, align = 'left' } = Astro.props;
+const {
+  icon,
+  iconClassName,
+  title,
+  titleClassName,
+  description,
+  descriptionClassName,
+  align = 'left',
+  variant = 'stacked',
+} = Astro.props;
 ---
 
 <div
   class:list={[
-    'flex flex-col gap-4',
+    'flex gap-4',
+    { 'flex-col': variant === 'stacked' },
+    { 'flex-row': variant === 'list' },
     { 'justify-start': align === 'left' },
     { 'items-center text-center': align === 'center' },
   ]}
 >
-  <Icon name={icon} size="3xl" variant="square" />
-  <h3 class="text-foreground text-2xl font-extrabold">
-    {title}
-  </h3>
-  {description && <p class="text-subtle text-lg mt-2" set:html={description} />}
+  <Icon
+    name={icon}
+    className={iconClassName}
+    size={variant === 'stacked' ? '3xl' : 'md'}
+    variant={variant === 'stacked' ? 'square' : 'plain'}
+  />
+  <div>
+    <h3
+      class={twMerge('text-foreground text-2xl font-extrabold', titleClassName)}
+    >
+      {title}
+    </h3>
+    {
+      description && (
+        <div
+          class={twMerge(
+            'text-subtle text-lg mt-2 flex flex-col gap-5',
+            descriptionClassName,
+          )}
+          set:html={description}
+        />
+      )
+    }
+  </div>
 </div>

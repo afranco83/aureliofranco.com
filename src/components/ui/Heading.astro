@@ -1,11 +1,21 @@
 ---
+import { twMerge } from 'tailwind-merge';
+
 type Props = {
   title: string;
+  titleClassName?: string;
   description?: string;
+  descriptionClassName?: string;
   align?: 'left' | 'center' | 'right';
 };
 
-const { title, description, align = 'left' } = Astro.props;
+const {
+  title,
+  titleClassName,
+  description,
+  descriptionClassName,
+  align = 'left',
+} = Astro.props;
 ---
 
 <div
@@ -15,12 +25,17 @@ const { title, description, align = 'left' } = Astro.props;
     { 'justify-end items-end': align === 'right' },
   ]}
 >
-  <h2 class="text-5xl text-foreground font-black">{title}</h2>
+  <h2 class={twMerge('text-5xl text-foreground font-black', titleClassName)}>
+    {title}
+  </h2>
   <p
     class:list={[
-      'text-2xl text-accent md:w-1/2',
-      { 'text-center': align === 'center' },
-      { 'text-right': align === 'right' },
+      twMerge(
+        'text-2xl text-accent md:w-1/2',
+        align === 'center' && 'text-center',
+        align === 'right' && 'text-right',
+        descriptionClassName,
+      ),
     ]}
   >
     {description}
