@@ -2,6 +2,13 @@
 import Container from '../ui/Container.astro';
 import { Image } from 'astro:assets';
 import aurelioFrancoImg from '../../assets/images/hero/aureliofranco.webp';
+import type { Translations } from '@/i18n/schema.ts';
+
+type Props = {
+  t: Translations['hero'];
+};
+
+const { t } = Astro.props;
 ---
 
 <section
@@ -13,10 +20,10 @@ import aurelioFrancoImg from '../../assets/images/hero/aureliofranco.webp';
   >
     <div class="h-auto text-center w-full lg:text-left">
       <h1 class="text-white text-5xl font-extrabold lg:text-6xl xl:text-7xl">
-        Aurelio Franco
+        {t.title}
       </h1>
       <p class="text-accent text-3xl font-extralight lg:text-4xl">
-        De la idea a la interfaz
+        {t.subtitle}
       </p>
     </div>
     <Image

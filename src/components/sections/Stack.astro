@@ -1,46 +1,14 @@
 ---
-import type { IconName } from '@/types/icons';
+import type { Translations } from '@/i18n/schema.ts';
 import Container from '../ui/Container.astro';
 import Heading from '../ui/Heading.astro';
 import IconCard from '../ui/IconCard.astro';
 
-type Items = {
-  id: number;
-  icon: IconName;
-  title: string;
-  description: string;
+type Props = {
+  t: Translations['stack'];
 };
 
-const ITEMS: Items[] = [
-  {
-    id: 1,
-    icon: 'Code',
-    title: 'Frontend',
-    description:
-      '<p>React, Next.js, TypeScript y tecnologías web modernas para construir interfaces rápidas, escalables y mantenibles.</p><p><strong>Stack</strong>: React · Next.js · TypeScript · JavaScript · HTML · CSS</p>',
-  },
-  {
-    id: 2,
-    icon: 'Lamp',
-    title: 'Producto y UI/UX',
-    description:
-      '<p>Discovery, experiencia de usuario, accesibilidad y analítica para diseñar productos alineados con las necesidades reales de usuarios y negocio.</p><p><strong>Áreas</strong>: Product Discovery · UX Thinking · Design Systems · Accesibilidad · SEO · Analítica</p>',
-  },
-  {
-    id: 3,
-    icon: 'Structure',
-    title: 'Desarrollo',
-    description:
-      '<p>Arquitectura frontend, testing, rendimiento y automatización para garantizar calidad, escalabilidad y sostenibilidad a largo plazo.</p><p><strong>Capacidades</strong>: Git · CI/CD · Testing · Optimización de rendimiento · Arquitectura Frontend</p>',
-  },
-  {
-    id: 4,
-    icon: 'AIBox',
-    title: 'Inteligencia Artificial',
-    description:
-      '<p>AI-powered tools and workflows that help accelerate research, development, documentation and decision-making.</p><p><strong>Toolkit</strong>: ChatGPT · Claude · Cursor · GitHub Copilot · AI-Assisted Workflows</p>',
-  },
-];
+const { t } = Astro.props;
 ---
 
 <section id="stack">
@@ -49,14 +17,14 @@ const ITEMS: Items[] = [
       class="grid grid-cols-1 gap-18 justify-center items-center bg-accent-soft p-10 rounded-2xl lg:grid-cols-2"
     >
       <Heading
-        title="Tecnologías y enfoque"
+        title={t.title}
         titleClassName="text-accent text-4xl"
-        description="Mi trabajo se apoya en una combinación de tecnologías modernas, pensamiento de producto e inteligencia artificial aplicada para transformar ideas en productos digitales escalables y sostenibles."
+        description={t.description}
         descriptionClassName="text-accent-dark text-xl md:w-full"
       />
       <div class="flex flex-col gap-10 bg-accent-dark p-8 rounded-2xl">
         {
-          ITEMS.map((item) => (
+          t.items.map((item) => (
             <IconCard
               icon={item.icon}
               iconClassName="text-white"

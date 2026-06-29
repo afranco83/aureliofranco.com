@@ -1,12 +1,17 @@
 ---
 import Container from '../ui/Container.astro';
 import Claim from '../ui/Claim.astro';
+import type { Translations } from '@/i18n/schema.ts';
+
+type Props = {
+  t: Translations['claim'];
+};
+
+const { t } = Astro.props;
 ---
 
 <section id="claim">
   <Container className="text-subtle text-center max-w-4xl">
-    <Claim
-      text="Construyo <strong>experiencias digitales</strong> modernas a través de ingeniería <strong>frontend</strong>, visión de <strong>producto</strong> y ejecución asistida por <strong>IA</strong>."
-    />
+    <Claim text={t.text} />
   </Container>
 </section>

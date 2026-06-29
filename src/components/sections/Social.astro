@@ -1,45 +1,27 @@
 ---
-import type { IconName } from '@/types/icons';
+import type { Translations } from '@/i18n/schema.ts';
 import Container from '../ui/Container.astro';
 import Icon from '../ui/Icon.astro';
 
-type Items = {
-  id: number;
-  icon: IconName;
-  href: string;
+type Props = {
+  t: Translations['social'];
 };
 
-const ITEMS: Items[] = [
-  {
-    id: 1,
-    icon: 'Whatsapp',
-    href: '#',
-  },
-  {
-    id: 2,
-    icon: 'Linkedin',
-    href: 'www.linkedin.com/in/aureliofranco',
-  },
-  {
-    id: 3,
-    icon: 'Github',
-    href: 'https://github.com/afranco83/aureliofranco.com',
-  },
-  {
-    id: 3,
-    icon: 'Message',
-    href: 'mailto:info@aureliofranco.com',
-  },
-];
+const { t } = Astro.props;
 ---
 
 <section id="social">
   <Container>
     <ul class="flex justify-center gap-8 mb-32">
       {
-        ITEMS.map((item) => (
+        t.items.map((item) => (
           <li>
-            <a class="hover:text-accent" href={item.href} target="_blank">
+            <a
+              class="hover:text-accent"
+              href={item.href}
+              target="_blank"
+              aria-label={item.title}
+            >
               <Icon name={item.icon} size="xl" />
             </a>
           </li>
