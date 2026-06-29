@@ -1,6 +1,1 @@
-export default {
-  hero: {
-    title: 'Aurelio Franco',
-    description: 'From Idea to Interface',
-  },
-} as const;
+export { en as default } from '../en.ts';

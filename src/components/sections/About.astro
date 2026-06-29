@@ -1,40 +1,28 @@
 ---
 import Container from '../ui/Container.astro';
 import Heading from '../ui/Heading.astro';
+import type { Translations } from '@/i18n/schema.ts';
+
+type Props = {
+  t: Translations['aboutMe'];
+};
+
+const { t } = Astro.props;
 ---
 
 <section id="about">
   <Container className="flex flex-col gap-16">
-    <Heading
-      title="Sobre mí"
-      description="Frontend Engineering impulsado por IA, visión de producto y liderazgo de proyectos"
-    />
+    <Heading title={t.title} description={t.description} />
     <div class="grid gap-5 text-lg text-justify md:gap-18 lg:grid-cols-2">
       <div class="flex flex-col gap-5">
-        <p>
-          A lo largo de mi trayectoria profesional he trabajado en <strong
-            >frontend, producto, UI/UX, SEO y gestión de proyectos</strong
-          >, desarrollando una visión transversal que me permite entender los
-          productos como sistemas completos y no solo como desarrollos técnicos.
-        </p>
-        <p>
-          Esta combinación me permite moverme con naturalidad entre la visión de
-          negocio y la ejecución, participando tanto en la definición de la
-          estrategia como en la construcción de soluciones digitales útiles,
-          escalables y sostenibles.
-        </p>
+        {t.text.slice(0, Math.ceil(t.text.length / 2)).map((paragraph) => (
+          <Fragment set:html={paragraph} />
+        ))}
       </div>
       <div class="flex flex-col gap-5">
-        <p>
-          Actualmente combino <strong
-            >desarrollo frontend moderno e inteligencia artificial</strong
-          > para acelerar procesos, optimizar la toma de decisiones y aumentar la
-          capacidad de entrega de equipos y proyectos.
-        </p>
-        <p>
-          Me motiva transformar ideas complejas en productos digitales claros,
-          eficientes y centrados en las personas.
-        </p>
+        {t.text.slice(Math.ceil(t.text.length / 2)).map((paragraph) => (
+          <Fragment set:html={paragraph} />
+        ))}
       </div>
     </div>
   </Container>

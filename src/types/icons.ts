@@ -1,3 +1,5 @@
+
+// Archivo generado automáticamente
 export const ICON_NAMES = [
   'AIBox',
   'Ai',

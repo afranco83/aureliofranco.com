@@ -1,17 +1,19 @@
 ---
 import '../styles/global.css';
+import type { Locale } from '@/i18n/index.ts';
 
 interface Props {
   title?: string;
   description?: string;
+  lang?: Locale;
 }
 
-const { title = 'Aurelio Franco', description = 'Frontend Developer' } =
+const { title = 'Aurelio Franco', description = 'Frontend Developer', lang = 'es' } =
   Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
