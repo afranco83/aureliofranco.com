@@ -1,18 +1,18 @@
+export const ICON_NAMES = [
+  'AIBox',
+  'Ai',
+  'ChartLight',
+  'Chemistry',
+  'Code',
+  'Github',
+  'Glass',
+  'Lamp',
+  'LaptopDuotone',
+  'LeaderDuotone',
+  'Linkedin',
+  'Message',
+  'Structure',
+  'Whatsapp',
+] as const;
 
-// Archivo generado automáticamente
-export type IconName =
-  | 'AIBox'
-  | 'Ai'
-  | 'ChartLight'
-  | 'Chemistry'
-  | 'Code'
-  | 'Github'
-  | 'Glass'
-  | 'Lamp'
-  | 'LaptopDuotone'
-  | 'LeaderDuotone'
-  | 'Linkedin'
-  | 'Message'
-  | 'Structure'
-  | 'Whatsapp'
-;
+export type IconName = (typeof ICON_NAMES)[number];
