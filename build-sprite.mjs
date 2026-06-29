@@ -57,9 +57,11 @@ try {
 
   const typeContent = `
 // Archivo generado automáticamente
-export type IconName =
-${iconNames.map((name) => `  | '${name}'`).join('\n')}
-;
+export const ICON_NAMES = [
+${iconNames.map((name) => `  '${name}',`).join('\n')}
+] as const;
+
+export type IconName = (typeof ICON_NAMES)[number];
 `;
 
   fs.writeFileSync(typesFile, typeContent);
