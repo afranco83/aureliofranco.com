@@ -9,7 +9,6 @@ export const en = defineTranslations({
     title: 'About Me',
     description: 'AI-Driven Frontend Engineering, Product Thinking & Project Leadership',
     text: [
-      '<p>For more than 20 years, I have been building digital products by connecting strategy, user experience and technology.</p>',
       '<p>Throughout my career, I have worked across <strong>frontend engineering, product development, UX, SEO and project management</strong>, gaining a broad perspective that allows me to see products as complete systems rather than isolated features.</p>',
       '<p>This multidisciplinary background enables me to move comfortably between business vision and execution, contributing both to strategic decision-making and the delivery of useful, scalable and sustainable digital solutions.</p>',
       '<p>Today I combine <strong>modern frontend development with artificial intelligence</strong> to streamline processes, improve decision-making and increase delivery efficiency across teams and projects.</p>',
