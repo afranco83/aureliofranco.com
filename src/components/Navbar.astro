@@ -1,0 +1,64 @@
+---
+import type { Locale } from '@/i18n/index.ts';
+
+type Props = {
+  lang: Locale;
+};
+
+const { lang } = Astro.props;
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <nav class="flex justify-end items-center px-9 py-5">
+    <div class="flex items-center gap-3 text-sm font-semibold tracking-widest uppercase">
+      <a
+        href="/"
+        class:list={[
+          'transition-colors',
+          lang === 'es'
+            ? 'text-accent'
+            : 'nav-inactive text-white hover:text-accent',
+        ]}
+      >ES</a>
+      <span class="nav-sep text-white/40">|</span>
+      <a
+        href="/en/"
+        class:list={[
+          'transition-colors',
+          lang === 'en'
+            ? 'text-accent'
+            : 'nav-inactive text-white hover:text-accent',
+        ]}
+      >EN</a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const navbar = document.getElementById('navbar') as HTMLElement;
+  const inactiveLinks = navbar.querySelectorAll<HTMLElement>('.nav-inactive');
+  const sep = navbar.querySelector<HTMLElement>('.nav-sep');
+
+  function update() {
+    const scrolled = window.scrollY > 80;
+
+    navbar.classList.toggle('bg-white', scrolled);
+    navbar.classList.toggle('shadow-sm', scrolled);
+
+    for (const link of inactiveLinks) {
+      link.classList.toggle('text-white', !scrolled);
+      link.classList.toggle('text-foreground', scrolled);
+    }
+
+    if (sep) {
+      sep.classList.toggle('text-white/40', !scrolled);
+      sep.classList.toggle('text-foreground/30', scrolled);
+    }
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+</script>
