@@ -22,21 +22,23 @@ const { t } = Astro.props;
         description={t.description}
         descriptionClassName="text-accent-dark text-xl md:w-full"
       />
-      <div class="flex flex-col gap-10 bg-accent-dark p-8 rounded-2xl">
+      <ul class="flex flex-col gap-10 list-none bg-accent-dark p-8 rounded-2xl">
         {
           t.items.map((item) => (
-            <IconCard
-              icon={item.icon}
-              iconClassName="text-white"
-              title={item.title}
-              titleClassName="text-white text-xl"
-              description={item.description}
-              descriptionClassName="text-white text-base"
-              variant="list"
-            />
+            <li>
+              <IconCard
+                icon={item.icon}
+                iconClassName="text-white"
+                title={item.title}
+                titleClassName="text-white text-xl"
+                description={item.description}
+                descriptionClassName="text-white text-base"
+                variant="list"
+              />
+            </li>
           ))
         }
-      </div>
+      </ul>
     </div>
   </Container>
 </section>

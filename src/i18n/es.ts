@@ -1,6 +1,11 @@
 import { defineTranslations } from './defineTranslations.ts';
 
 export const es = defineTranslations({
+  meta: {
+    title: 'Aurelio Franco · Frontend Developer & Product Leader',
+    description:
+      'Frontend developer con más de 20 años de experiencia en producto, UX y tecnología. Especialista en React, TypeScript e IA aplicada.',
+  },
   hero: {
     title: 'Aurelio Franco',
     subtitle: 'De la idea a la interfaz',
@@ -20,6 +25,7 @@ export const es = defineTranslations({
   },
   claim: {
     text: 'Construyo <strong>experiencias digitales</strong> modernas a través de ingeniería <strong>frontend</strong>, visión de <strong>producto</strong> y ejecución asistida por <strong>IA</strong>.',
+    label: 'Propuesta de valor',
   },
   howTo: {
     title: 'Cómo trabajo',
@@ -84,16 +90,17 @@ export const es = defineTranslations({
     ],
   },
   social: {
+    label: 'Contacto',
     items: [
       {
         title: 'WhatsApp',
         icon: 'Whatsapp',
-        href: '#',
+        href: 'https://wa.me/34661468441',
       },
       {
         title: 'LinkedIn',
         icon: 'Linkedin',
-        href: 'www.linkedin.com/in/aureliofranco',
+        href: 'https://www.linkedin.com/in/aureliofranco',
       },
       {
         title: 'GitHub',

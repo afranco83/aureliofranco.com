@@ -18,20 +18,22 @@ const { t } = Astro.props;
       description={t.description}
       align="center"
     />
-    <div
-      class="grid grid-cols-1 gap-9 md:grid-cols-2 md:gap-11 lg:grid-cols-3 lg:gap-16"
+    <ul
+      class="grid grid-cols-1 gap-9 list-none md:grid-cols-2 md:gap-11 lg:grid-cols-3 lg:gap-16"
     >
       {
         t.items.map((item) => (
-          <IconCard
-            icon={item.icon}
-            title={item.title}
-            description={item.description}
-            align="center"
-            variant="stacked"
-          />
+          <li>
+            <IconCard
+              icon={item.icon}
+              title={item.title}
+              description={item.description}
+              align="center"
+              variant="stacked"
+            />
+          </li>
         ))
       }
-    </div>
+    </ul>
   </Container>
 </section>
