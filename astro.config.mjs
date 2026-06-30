@@ -6,7 +6,12 @@ import { aliases } from './aliases.mjs';
 
 export default defineConfig({
   site: 'https://www.aureliofranco.com',
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !page.includes('/playground'),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
     resolve: {
