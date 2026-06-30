@@ -18,7 +18,7 @@ Sitio web personal de **Aurelio Franco**, Frontend Developer. Landing de una sol
 | Tests                  | Vitest (suites unitarias para el sistema i18n)                         |
 | Lint / Format          | ESLint 10 + `eslint-plugin-astro`, Prettier                            |
 | Convenciones de commit | Commitlint + `cz-git` + Husky (hooks `commit-msg` / `pre-commit`)      |
-| CI                     | GitHub Actions (`lint` → `typecheck` → `test` → `build`)              |
+| CI / CD                | GitHub Actions (CI: `lint` → `typecheck` → `test` → `build`; deploy automático a GitHub Pages) |
 | Gestor de paquetes     | pnpm (workspace)                                                       |
 
 ## 📁 Estructura del proyecto
@@ -49,7 +49,9 @@ Sitio web personal de **Aurelio Franco**, Frontend Developer. Landing de una sol
 │   └── types/icons.ts         # Tipo `IconName` e `ICON_NAMES`, generados automáticamente
 ├── build-sprite.mjs           # Script que genera public/icons.svg + src/types/icons.ts
 ├── astro.config.mjs           # Integraciones (react, tailwind, sitemap) y alias `@` → `src/`
-└── .github/workflows/ci.yml
+└── .github/
+    ├── workflows/ci.yml       # Lint, typecheck, test y build en cada PR y push a main
+    └── workflows/deploy.yml   # Deploy automático a GitHub Pages en cada push a main
 ```
 
 ## 🧩 Cómo funciona el sistema de iconos
@@ -88,6 +90,7 @@ pnpm build-icons
 - **Conventional Commits**, validados por `commitlint` en el hook `commit-msg` de Husky.
 - **Pre-commit**: lint/format antes de cada commit (Husky).
 - **CI** (GitHub Actions, en cada PR y push a `main`): `pnpm lint` → `pnpm typecheck` → `pnpm test` → `pnpm build`.
+- **CD** (GitHub Actions, en cada push a `main`): build y deploy automático a GitHub Pages.
 - Flujo de trabajo basado en ramas por feature (`feature/...`, `refactor/...`, `style/...`) integradas vía PR a `main`.
 
 ## 🌐 Internacionalización (i18n)
@@ -111,7 +114,11 @@ El sitio está disponible en español (`/`) e inglés (`/en/`). El sistema funci
 
 ## 📦 Despliegue
 
-Proyecto generado como sitio estático (`astro build` → `dist/`), desplegable en cualquier hosting estático o CDN (Netlify, Vercel, Cloudflare Pages, GitHub Pages, etc.). No hay configuración de adaptador SSR ni variables de entorno detectadas.
+El sitio se despliega automáticamente en **GitHub Pages** en `https://www.aureliofranco.com` con cada push a `main`.
+
+El workflow `.github/workflows/deploy.yml` ejecuta `pnpm build` y publica el contenido de `dist/` mediante `actions/deploy-pages`. El dominio personalizado se gestiona a través de `public/CNAME`.
+
+Para desarrollo local, `pnpm build` genera el sitio estático en `dist/`, previsualizable con `pnpm preview`.
 
 ## 📄 Licencia
 
