@@ -6,40 +6,49 @@ Sitio web personal de **Aurelio Franco**, Frontend Developer. Landing de una sol
 
 ## 🚀 Stack técnico
 
-| Categoría              | Tecnología                                                        |
-| ---------------------- | ----------------------------------------------------------------- |
-| Framework              | Astro 6 (SSG, islas con `@astrojs/react`)                         |
-| UI interactiva         | React 19                                                          |
-| Estilos                | Tailwind CSS v4 (vía plugin de Vite)                              |
-| Utilidades             | `tailwind-merge` para composición de clases                       |
-| Imágenes               | `sharp` (optimización vía `astro:assets`)                         |
-| Tipado                 | TypeScript (`astro check`)                                        |
-| Lint / Format          | ESLint 10 + `eslint-plugin-astro`, Prettier                       |
-| Convenciones de commit | Commitlint + `cz-git` + Husky (hooks `commit-msg` / `pre-commit`) |
-| CI                     | GitHub Actions (`lint` → `typecheck` → `build`)                   |
-| Gestor de paquetes     | pnpm (workspace)                                                  |
+| Categoría              | Tecnología                                                             |
+| ---------------------- | ---------------------------------------------------------------------- |
+| Framework              | Astro 6 (SSG, islas con `@astrojs/react`)                              |
+| UI interactiva         | React 19                                                               |
+| Estilos                | Tailwind CSS v4 (vía plugin de Vite)                                   |
+| Utilidades             | `tailwind-merge` para composición de clases                            |
+| i18n / Validación      | Zod (schema de traducciones validado en build time)                    |
+| Imágenes               | `sharp` (optimización vía `astro:assets`)                              |
+| Tipado                 | TypeScript (`astro check`)                                             |
+| Tests                  | Vitest (suites unitarias para el sistema i18n)                         |
+| Lint / Format          | ESLint 10 + `eslint-plugin-astro`, Prettier                            |
+| Convenciones de commit | Commitlint + `cz-git` + Husky (hooks `commit-msg` / `pre-commit`)      |
+| CI                     | GitHub Actions (`lint` → `typecheck` → `test` → `build`)              |
+| Gestor de paquetes     | pnpm (workspace)                                                       |
 
 ## 📁 Estructura del proyecto
 
 ```
 .
-├── public/                 # Estáticos servidos tal cual (favicon, icons.svg generado)
+├── public/                    # Estáticos servidos tal cual (favicon, icons.svg generado, og-image-*.png)
 ├── src/
-│   ├── assets/images/      # Imágenes optimizables por Astro (hero)
+│   ├── assets/images/         # Imágenes optimizables por Astro (hero)
 │   ├── components/
-│   │   ├── sections/        # Bloques de la página: Hero, About, Stack, Howto, Claim, FeaturedClaim, Social
+│   │   ├── Navbar.astro       # Selector de idioma (ES / EN) con comportamiento de scroll
+│   │   ├── sections/          # Bloques de la página: Hero, About, FeaturedClaim, Howto, Stack, Claim, Social
 │   │   └── ui/                # Componentes reutilizables: Container, Heading, Icon, IconCard, Claim
-│   ├── data/                  # Ficheros de datos por sección (about, hero, howto, social, stack)
-│   ├── icons/                  # SVGs fuente (origen del sprite, normalmente exportados de Figma)
+│   ├── data/                  # Ficheros stub vacíos (el contenido vive en src/i18n/locales/)
+│   ├── i18n/
+│   │   ├── locales/           # Traducciones por idioma: en.ts, es.ts
+│   │   ├── schema.ts          # Schema Zod con la forma de todas las traducciones
+│   │   ├── defineTranslations.ts  # Helper que valida locales contra el schema en build time
+│   │   └── index.ts           # getTranslations(locale), isValidLocale(), defaultLocale
+│   ├── icons/                 # SVGs fuente (origen del sprite, normalmente exportados de Figma)
 │   ├── layouts/
-│   │   └── BaseLayout.astro    # Layout base: <head>, meta, import de estilos globales
+│   │   └── BaseLayout.astro   # Layout base: <head>, meta SEO/OG, JSON-LD, Navbar
 │   ├── pages/
-│   │   ├── index.astro         # Página principal (composición de secciones)
-│   │   └── playground.astro    # Página de prueba para validar tokens visuales (colores, tipografía, botones, cards)
-│   ├── styles/global.css       # Tema Tailwind v4 (`@theme`): tipografía, color, radios
-│   └── types/icons.ts          # Tipo `IconName`, generado automáticamente
-├── build-sprite.mjs          # Script que genera public/icons.svg + src/types/icons.ts a partir de src/icons/*.svg
-├── astro.config.mjs          # Integraciones (react, tailwind) y alias `@` → `src/`
+│   │   ├── index.astro        # Página principal (es)
+│   │   ├── en/index.astro     # Página principal (en)
+│   │   └── playground.astro   # Página de design system para validar tokens visuales
+│   ├── styles/global.css      # Tema Tailwind v4 (`@theme`): tipografía, color, radios
+│   └── types/icons.ts         # Tipo `IconName` e `ICON_NAMES`, generados automáticamente
+├── build-sprite.mjs           # Script que genera public/icons.svg + src/types/icons.ts
+├── astro.config.mjs           # Integraciones (react, tailwind, sitemap) y alias `@` → `src/`
 └── .github/workflows/ci.yml
 ```
 
@@ -70,6 +79,7 @@ pnpm build-icons
 | `pnpm lint`        | Linting con ESLint                                                   |
 | `pnpm format`      | Formatea con Prettier                                                |
 | `pnpm typecheck`   | Comprueba tipos con `astro check`                                    |
+| `pnpm test`        | Ejecuta los tests unitarios con Vitest                               |
 | `pnpm build-icons` | Regenera el sprite de iconos y `IconName`                            |
 | `pnpm commit`      | Commit guiado (Commitizen / `cz-git`) siguiendo Conventional Commits |
 
@@ -77,15 +87,27 @@ pnpm build-icons
 
 - **Conventional Commits**, validados por `commitlint` en el hook `commit-msg` de Husky.
 - **Pre-commit**: lint/format antes de cada commit (Husky).
-- **CI** (GitHub Actions, en cada PR y push a `main`): `pnpm lint` → `pnpm typecheck` → `pnpm build`.
+- **CI** (GitHub Actions, en cada PR y push a `main`): `pnpm lint` → `pnpm typecheck` → `pnpm test` → `pnpm build`.
 - Flujo de trabajo basado en ramas por feature (`feature/...`, `refactor/...`, `style/...`) integradas vía PR a `main`.
+
+## 🌐 Internacionalización (i18n)
+
+El sitio está disponible en español (`/`) e inglés (`/en/`). El sistema funciona así:
+
+1. Las traducciones se definen en `src/i18n/locales/es.ts` y `src/i18n/locales/en.ts` usando `defineTranslations()`, que valida el objeto contra el schema Zod en build time.
+2. El schema (`src/i18n/schema.ts`) es la fuente de verdad de la forma de todas las traducciones.
+3. Cada página llama a `getTranslations(locale)` y pasa los slices correspondientes a cada sección como prop `t`.
+4. Los componentes de sección nunca llaman a `getTranslations()` directamente — solo reciben `t`.
+
+> Toda traducción nueva debe añadirse en **ambos** locales y en el **schema** en el mismo commit.
 
 ## 📝 Estado actual
 
-- Página principal compuesta por: `Hero` → `About` → `FeaturedClaim` → `Howto` → `Stack` → `Claim` → `Social`.
-- La sección `Social` (`src/components/sections/Social.astro`) es un placeholder pendiente de implementación (solo título, sin contenido ni enlaces).
-- Los ficheros en `src/data/` (`about.ts`, `hero.ts`, `howto.ts`, `social.ts`, `stack.ts`) existen pero están **vacíos**: el contenido de cada sección está actualmente hardcodeado dentro del propio componente `.astro` (ver `ITEMS` en `Howto.astro` y `Stack.astro`). Si la intención es centralizar el contenido en `data/`, falta migrar esos arrays y conectarlos.
+- Página principal (ES y EN) compuesta por: `Hero` → `About` → `FeaturedClaim` → `Howto` → `Stack` → `Claim` → `Social` (footer).
+- El `Navbar` fijo en la parte superior permite cambiar entre ES y EN; adapta colores al hacer scroll.
+- Los ficheros en `src/data/` (`about.ts`, `hero.ts`, `howto.ts`, `social.ts`, `stack.ts`) existen pero están **vacíos**: todo el contenido de las secciones vive en `src/i18n/locales/`.
 - `playground.astro` es una página de design system viva (no enlazada desde la navegación) para validar tokens de color, tipografía, botones y cards definidos en `global.css`.
+- El `BaseLayout` incluye meta tags SEO completos (canonical, hreflang, Open Graph, Twitter Card, JSON-LD Schema.org).
 
 ## 📦 Despliegue
 
