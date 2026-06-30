@@ -4,6 +4,7 @@ import { ICON_NAMES } from '@/types/icons';
 const validIcon = ICON_NAMES[0];
 
 const minimalValidTranslations = {
+  meta: { title: 'Title', description: 'Description' },
   hero: { title: 'Title', subtitle: 'Subtitle' },
   aboutMe: { title: 'About', description: 'Description', text: ['Paragraph'] },
   featuredClaim: { text: 'Claim' },
@@ -17,8 +18,9 @@ const minimalValidTranslations = {
     description: 'Description',
     items: [{ icon: validIcon, title: 'Tech', description: 'Description' }],
   },
-  claim: { text: 'Claim' },
+  claim: { text: 'Claim', label: 'Label' },
   social: {
+    label: 'Label',
     items: [{ title: 'Social', icon: validIcon, href: 'https://example.com' }],
   },
 };
@@ -35,15 +37,64 @@ describe('defineTranslations', () => {
     expect(() => defineTranslations(withoutHero)).toThrow();
   });
 
+  it('should throw when meta is missing', () => {
+    const withoutMeta = Object.fromEntries(
+      Object.entries(minimalValidTranslations).filter(([key]) => key !== 'meta'),
+    );
+    expect(() => defineTranslations(withoutMeta)).toThrow();
+  });
+
+  it('should throw when meta.title is empty', () => {
+    expect(() =>
+      defineTranslations({
+        ...minimalValidTranslations,
+        meta: { ...minimalValidTranslations.meta, title: '' },
+      }),
+    ).toThrow();
+  });
+
+  it('should throw when meta.description is empty', () => {
+    expect(() =>
+      defineTranslations({
+        ...minimalValidTranslations,
+        meta: { ...minimalValidTranslations.meta, description: '' },
+      }),
+    ).toThrow();
+  });
+
   it('should throw when a text field is an empty string', () => {
     expect(() =>
-      defineTranslations({ ...minimalValidTranslations, claim: { text: '' } }),
+      defineTranslations({
+        ...minimalValidTranslations,
+        claim: { ...minimalValidTranslations.claim, text: '' },
+      }),
     ).toThrow();
   });
 
   it('should throw when a text field contains only whitespace', () => {
     expect(() =>
-      defineTranslations({ ...minimalValidTranslations, claim: { text: '   ' } }),
+      defineTranslations({
+        ...minimalValidTranslations,
+        claim: { ...minimalValidTranslations.claim, text: '   ' },
+      }),
+    ).toThrow();
+  });
+
+  it('should throw when claim.label is missing', () => {
+    const claimWithoutLabel = Object.fromEntries(
+      Object.entries(minimalValidTranslations.claim).filter(([key]) => key !== 'label'),
+    );
+    expect(() =>
+      defineTranslations({ ...minimalValidTranslations, claim: claimWithoutLabel }),
+    ).toThrow();
+  });
+
+  it('should throw when social.label is missing', () => {
+    const socialWithoutLabel = Object.fromEntries(
+      Object.entries(minimalValidTranslations.social).filter(([key]) => key !== 'label'),
+    );
+    expect(() =>
+      defineTranslations({ ...minimalValidTranslations, social: socialWithoutLabel }),
     ).toThrow();
   });
 
