@@ -1,6 +1,11 @@
 import { defineTranslations } from './defineTranslations.ts';
 
 export const en = defineTranslations({
+  meta: {
+    title: 'Aurelio Franco · Frontend Developer & Product Leader',
+    description:
+      'Frontend developer with 20+ years of experience in product, UX and technology. Specialist in React, TypeScript and applied AI.',
+  },
   hero: {
     title: 'Aurelio Franco',
     subtitle: 'From Idea to Interface',
@@ -20,6 +25,7 @@ export const en = defineTranslations({
   },
   claim: {
     text: 'I build modern <strong>digital experiences</strong> through <strong>frontend</strong> engineering, <strong>product</strong> thinking and <strong>AI</strong>-assisted execution.',
+    label: 'Value Proposition',
   },
   howTo: {
     title: 'How I Work',
@@ -84,16 +90,17 @@ export const en = defineTranslations({
     ],
   },
   social: {
+    label: 'Contact',
     items: [
       {
         title: 'WhatsApp',
         icon: 'Whatsapp',
-        href: '#',
+        href: 'https://wa.me/34661468441',
       },
       {
         title: 'LinkedIn',
         icon: 'Linkedin',
-        href: 'www.linkedin.com/in/aureliofranco',
+        href: 'https://www.linkedin.com/in/aureliofranco',
       },
       {
         title: 'GitHub',

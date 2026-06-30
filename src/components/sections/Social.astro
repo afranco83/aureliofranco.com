@@ -10,7 +10,7 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<section id="social">
+<section id="social" aria-label={t.label}>
   <Container>
     <ul class="flex justify-center gap-8 mb-32">
       {
@@ -20,6 +20,7 @@ const { t } = Astro.props;
               class="hover:text-accent"
               href={item.href}
               target="_blank"
+              rel="noopener noreferrer"
               aria-label={item.title}
             >
               <Icon name={item.icon} size="xl" />

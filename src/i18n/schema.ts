@@ -31,6 +31,10 @@ const socialItemSchema = z.object({
 });
 
 export const translationsSchema = z.object({
+  meta: z.object({
+    title: text,
+    description: text,
+  }),
   hero: z.object({
     title: text,
     subtitle: text,
@@ -41,8 +45,9 @@ export const translationsSchema = z.object({
   featuredClaim: textBlockSchema,
   howTo: cardsSectionSchema,
   stack: cardsSectionSchema,
-  claim: textBlockSchema,
+  claim: textBlockSchema.extend({ label: text }),
   social: z.object({
+    label: text,
     items: z.array(socialItemSchema).min(1),
   }),
 });

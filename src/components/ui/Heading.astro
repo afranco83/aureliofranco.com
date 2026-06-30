@@ -7,6 +7,7 @@ type Props = {
   description?: string;
   descriptionClassName?: string;
   align?: 'left' | 'center' | 'right';
+  level?: 2 | 3 | 4;
 };
 
 const {
@@ -15,7 +16,16 @@ const {
   description,
   descriptionClassName,
   align = 'left',
+  level = 2,
 } = Astro.props;
+
+const headingClass = twMerge('text-5xl text-foreground font-black', titleClassName);
+const descriptionClass = twMerge(
+  'text-2xl text-accent md:w-1/2',
+  align === 'center' && 'text-center',
+  align === 'right' && 'text-right',
+  descriptionClassName,
+);
 ---
 
 <div
@@ -25,19 +35,8 @@ const {
     { 'justify-end items-end': align === 'right' },
   ]}
 >
-  <h2 class={twMerge('text-5xl text-foreground font-black', titleClassName)}>
-    {title}
-  </h2>
-  {description && (
-    <p
-      class={twMerge(
-        'text-2xl text-accent md:w-1/2',
-        align === 'center' && 'text-center',
-        align === 'right' && 'text-right',
-        descriptionClassName,
-      )}
-    >
-      {description}
-    </p>
-  )}
+  {level === 2 && <h2 class={headingClass}>{title}</h2>}
+  {level === 3 && <h3 class={headingClass}>{title}</h3>}
+  {level === 4 && <h4 class={headingClass}>{title}</h4>}
+  {description && <p class={descriptionClass}>{description}</p>}
 </div>

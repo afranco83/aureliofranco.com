@@ -10,7 +10,7 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<section id="claim">
+<section id="claim" aria-label={t.label}>
   <Container className="text-subtle text-center max-w-4xl">
     <Claim text={t.text} />
   </Container>

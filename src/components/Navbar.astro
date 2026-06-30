@@ -12,10 +12,11 @@ const { lang } = Astro.props;
   id="navbar"
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
 >
-  <nav class="flex justify-end items-center px-9 py-5">
+  <nav aria-label="Idioma" class="flex justify-end items-center px-9 py-5">
     <div class="flex items-center gap-3 text-sm font-semibold tracking-widest uppercase">
       <a
         href="/"
+        aria-current={lang === 'es' ? 'page' : undefined}
         class:list={[
           'transition-colors',
           lang === 'es'
@@ -23,9 +24,10 @@ const { lang } = Astro.props;
             : 'nav-inactive text-white hover:text-accent',
         ]}
       >ES</a>
-      <span class="nav-sep text-white/40">|</span>
+      <span aria-hidden="true" class="nav-sep text-white/40">|</span>
       <a
         href="/en/"
+        aria-current={lang === 'en' ? 'page' : undefined}
         class:list={[
           'transition-colors',
           lang === 'en'
