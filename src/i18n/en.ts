@@ -25,7 +25,6 @@ export const en = defineTranslations({
   },
   claim: {
     text: 'I build modern <strong>digital experiences</strong> through <strong>frontend</strong> engineering, <strong>product</strong> thinking and <strong>AI</strong>-assisted execution.',
-    label: 'Value Proposition',
   },
   howTo: {
     title: 'How I Work',
