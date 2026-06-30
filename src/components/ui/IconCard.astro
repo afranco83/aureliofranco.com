@@ -30,7 +30,7 @@ const {
   class:list={[
     'flex gap-4',
     { 'flex-col': variant === 'stacked' },
-    { 'flex-row': variant === 'list' },
+    { 'flex-col lg:flex-row': variant === 'list' },
     { 'justify-start': align === 'left' },
     { 'items-center text-center': align === 'center' },
   ]}
