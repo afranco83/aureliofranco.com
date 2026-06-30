@@ -13,16 +13,16 @@ const { t } = Astro.props;
 
 <section
   id="hero"
-  class="flex items-center justify-center bg-black h-auto p-9 lg:h-screen"
+  class="flex items-center justify-center bg-black h-auto pt-20 px-9 pb-9 lg:h-screen lg:p-9"
 >
   <Container
     className="h-full p-0 flex flex-col justify-center items-center gap-12 max-w-7xl lg:flex-row"
   >
     <div class="h-auto text-center w-full lg:text-left">
-      <h1 class="text-white text-5xl font-extrabold lg:text-6xl xl:text-7xl">
+      <h1 class="text-white text-3xl font-extrabold min-[440px]:text-5xl lg:text-6xl xl:text-7xl">
         {t.title}
       </h1>
-      <p class="text-accent text-3xl font-extralight lg:text-4xl">
+      <p class="text-accent text-xl font-extralight min-[440px]:text-3xl lg:text-4xl">
         {t.subtitle}
       </p>
     </div>
@@ -33,7 +33,7 @@ const { t } = Astro.props;
       height={958}
       loading="eager"
       fetchpriority="high"
-      class="max-w-xl max-h-xl h-auto aspect-square"
+      class="w-60 sm:w-72 md:w-80 lg:w-auto lg:max-w-xl h-auto aspect-square"
     />
   </Container>
 </section>
