@@ -28,16 +28,16 @@ const {
   <h2 class={twMerge('text-5xl text-foreground font-black', titleClassName)}>
     {title}
   </h2>
-  <p
-    class:list={[
-      twMerge(
+  {description && (
+    <p
+      class={twMerge(
         'text-2xl text-accent md:w-1/2',
         align === 'center' && 'text-center',
         align === 'right' && 'text-right',
         descriptionClassName,
-      ),
-    ]}
-  >
-    {description}
-  </p>
+      )}
+    >
+      {description}
+    </p>
+  )}
 </div>

@@ -1,5 +1,5 @@
 ---
-import type { IconName } from '../../types/icons.ts';
+import type { IconName } from '@/types/icons.ts';
 import { twMerge } from 'tailwind-merge';
 
 type Props = {
@@ -11,22 +11,25 @@ type Props = {
 };
 
 const { name, className, size = 'xs', title, variant = 'plain' } = Astro.props;
+
+const sizeClass = {
+  xs: 'size-6',
+  sm: 'size-7',
+  md: 'size-8',
+  lg: 'size-10',
+  xl: 'size-12',
+  '2xl': 'size-14',
+  '3xl': 'size-16',
+}[size];
 ---
 
 <svg
-  class:list={[
-    twMerge(
-      size === 'xs' && 'size-6',
-      size === 'md' && 'size-8',
-      size === 'lg' && 'size-10',
-      size === 'xl' && 'size-12',
-      size === '2xl' && 'size-14',
-      size === '3xl' && 'size-16',
-      variant === 'square' && 'border p-2.5 rounded-xl',
-      'shrink-0',
-      className,
-    ),
-  ]}
+  class={twMerge(
+    sizeClass,
+    variant === 'square' && 'border p-2.5 rounded-xl',
+    'shrink-0',
+    className,
+  )}
   fill="none"
   aria-hidden={title ? undefined : 'true'}
   role={title ? 'img' : 'presentation'}
