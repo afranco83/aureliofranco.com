@@ -19,9 +19,9 @@ const {
   level = 2,
 } = Astro.props;
 
-const headingClass = twMerge('text-5xl text-foreground font-black', titleClassName);
+const headingClass = twMerge('text-3xl md:text-4xl lg:text-5xl text-foreground font-black', titleClassName);
 const descriptionClass = twMerge(
-  'text-2xl text-accent md:w-1/2',
+  'text-lg md:text-xl lg:text-2xl text-accent md:w-1/2',
   align === 'center' && 'text-center',
   align === 'right' && 'text-right',
   descriptionClassName,
@@ -30,7 +30,7 @@ const descriptionClass = twMerge(
 
 <div
   class:list={[
-    'flex flex-col gap-5',
+    'flex flex-col gap-3 md:gap-4 lg:gap-5',
     { 'justify-center items-center': align === 'center' },
     { 'justify-end items-end': align === 'right' },
   ]}

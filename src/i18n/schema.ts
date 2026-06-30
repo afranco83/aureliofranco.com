@@ -45,7 +45,7 @@ export const translationsSchema = z.object({
   featuredClaim: textBlockSchema,
   howTo: cardsSectionSchema,
   stack: cardsSectionSchema,
-  claim: textBlockSchema.extend({ label: text }),
+  claim: textBlockSchema,
   social: z.object({
     label: text,
     items: z.array(socialItemSchema).min(1),

@@ -30,20 +30,20 @@ const {
   class:list={[
     'flex gap-4',
     { 'flex-col': variant === 'stacked' },
-    { 'flex-row': variant === 'list' },
+    { 'flex-col lg:flex-row': variant === 'list' },
     { 'justify-start': align === 'left' },
     { 'items-center text-center': align === 'center' },
   ]}
 >
   <Icon
     name={icon}
-    className={iconClassName}
+    className={twMerge(variant === 'stacked' && 'size-12 lg:size-16', iconClassName)}
     size={variant === 'stacked' ? '3xl' : 'md'}
     variant={variant === 'stacked' ? 'square' : 'plain'}
   />
   <div>
     <h3
-      class={twMerge('text-foreground text-2xl font-extrabold', titleClassName)}
+      class={twMerge('text-foreground text-xl lg:text-2xl font-extrabold', titleClassName)}
     >
       {title}
     </h3>
@@ -51,7 +51,7 @@ const {
       description && (
         <div
           class={twMerge(
-            'text-subtle text-lg mt-2 flex flex-col gap-5',
+            'text-subtle text-base lg:text-lg mt-2 flex flex-col gap-5',
             descriptionClassName,
           )}
           set:html={description}

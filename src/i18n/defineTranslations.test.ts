@@ -18,7 +18,7 @@ const minimalValidTranslations = {
     description: 'Description',
     items: [{ icon: validIcon, title: 'Tech', description: 'Description' }],
   },
-  claim: { text: 'Claim', label: 'Label' },
+  claim: { text: 'Claim' },
   social: {
     label: 'Label',
     items: [{ title: 'Social', icon: validIcon, href: 'https://example.com' }],
@@ -77,15 +77,6 @@ describe('defineTranslations', () => {
         ...minimalValidTranslations,
         claim: { ...minimalValidTranslations.claim, text: '   ' },
       }),
-    ).toThrow();
-  });
-
-  it('should throw when claim.label is missing', () => {
-    const claimWithoutLabel = Object.fromEntries(
-      Object.entries(minimalValidTranslations.claim).filter(([key]) => key !== 'label'),
-    );
-    expect(() =>
-      defineTranslations({ ...minimalValidTranslations, claim: claimWithoutLabel }),
     ).toThrow();
   });
 

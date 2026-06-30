@@ -14,15 +14,15 @@ const { t } = Astro.props;
 <section id="stack">
   <Container>
     <div
-      class="grid grid-cols-1 gap-18 justify-center items-center bg-accent-soft p-10 rounded-2xl lg:grid-cols-2"
+      class="grid grid-cols-1 gap-18 justify-center items-center bg-accent-soft p-6 md:p-10 rounded-2xl lg:grid-cols-2"
     >
       <Heading
         title={t.title}
-        titleClassName="text-accent text-4xl"
+        titleClassName="text-accent lg:text-4xl"
         description={t.description}
         descriptionClassName="text-accent-dark text-xl md:w-full"
       />
-      <ul class="flex flex-col gap-10 list-none bg-accent-dark p-8 rounded-2xl">
+      <ul class="flex flex-col gap-10 list-none bg-accent-dark p-5 md:p-8 rounded-2xl">
         {
           t.items.map((item) => (
             <li>
@@ -30,9 +30,9 @@ const { t } = Astro.props;
                 icon={item.icon}
                 iconClassName="text-white"
                 title={item.title}
-                titleClassName="text-white text-xl"
+                titleClassName="text-white text-xl lg:text-xl"
                 description={item.description}
-                descriptionClassName="text-white text-base"
+                descriptionClassName="text-white text-base lg:text-base"
                 variant="list"
               />
             </li>
