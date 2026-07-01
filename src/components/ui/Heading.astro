@@ -8,6 +8,7 @@ type Props = {
   descriptionClassName?: string;
   align?: 'left' | 'center' | 'right';
   level?: 2 | 3 | 4;
+  reveal?: boolean;
 };
 
 const {
@@ -17,6 +18,7 @@ const {
   descriptionClassName,
   align = 'left',
   level = 2,
+  reveal = false,
 } = Astro.props;
 
 const headingClass = twMerge('text-3xl md:text-4xl lg:text-5xl text-foreground font-black', titleClassName);
@@ -29,6 +31,7 @@ const descriptionClass = twMerge(
 ---
 
 <div
+  data-reveal={reveal || undefined}
   class:list={[
     'flex flex-col gap-3 md:gap-4 lg:gap-5',
     { 'justify-center items-center': align === 'center' },
