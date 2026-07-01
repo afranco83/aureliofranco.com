@@ -13,8 +13,20 @@ const { t } = Astro.props;
 
 <section
   id="hero"
-  class="flex items-center justify-center bg-black min-h-dvh px-9 py-20 lg:p-9"
+  class="relative flex items-center justify-center bg-black min-h-dvh px-9 py-20 lg:p-9"
 >
+  <div
+    data-curtain="left"
+    aria-hidden="true"
+    class="absolute inset-y-0 left-0 z-10 w-1/2 bg-accent pointer-events-none"
+  >
+  </div>
+  <div
+    data-curtain="right"
+    aria-hidden="true"
+    class="absolute inset-y-0 right-0 z-10 w-1/2 bg-accent pointer-events-none"
+  >
+  </div>
   <Container
     className="h-full p-0 flex flex-col justify-center items-center gap-12 max-w-7xl lg:flex-row"
   >

@@ -97,3 +97,25 @@
     }
   }
 }
+
+/*
+ * Cortinas del Hero: al igual que el reveal, solo cubren cuando hay JS
+ * disponible para abrirlas después (html.js-reveal). Sin JS, o con
+ * prefers-reduced-motion, nunca llegan a pintarse.
+ */
+@layer components {
+  [data-curtain] {
+    display: none;
+  }
+
+  html.js-reveal [data-curtain] {
+    display: block;
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js-reveal [data-curtain] {
+      display: none;
+    }
+  }
+}
