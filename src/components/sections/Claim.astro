@@ -10,8 +10,8 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<div id="claim">
-  <Container className="text-subtle text-center max-w-4xl">
+<section id="claim" class="flex flex-col justify-center min-h-dvh py-20">
+  <Container data-reveal className="text-subtle text-center max-w-4xl">
     <Claim text={t.text} />
   </Container>
-</div>
+</section>
