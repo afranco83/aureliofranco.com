@@ -24,8 +24,8 @@ const { t } = Astro.props;
       class="grid grid-cols-1 gap-9 list-none md:grid-cols-2 md:gap-11 lg:grid-cols-3 lg:gap-16"
     >
       {
-        t.items.map((item) => (
-          <li data-reveal>
+        t.items.map((item, index) => (
+          <li data-reveal style={`--stagger-index: ${index}`}>
             <IconCard
               icon={item.icon}
               title={item.title}

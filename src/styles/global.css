@@ -74,23 +74,13 @@
     transform: translateY(0);
   }
 
-  [data-reveal-stagger] > *:nth-child(1) {
-    transition-delay: 0ms;
-  }
-  [data-reveal-stagger] > *:nth-child(2) {
-    transition-delay: 80ms;
-  }
-  [data-reveal-stagger] > *:nth-child(3) {
-    transition-delay: 160ms;
-  }
-  [data-reveal-stagger] > *:nth-child(4) {
-    transition-delay: 240ms;
-  }
-  [data-reveal-stagger] > *:nth-child(5) {
-    transition-delay: 320ms;
-  }
-  [data-reveal-stagger] > *:nth-child(n + 6) {
-    transition-delay: 400ms;
+  /*
+   * El índice de cada hijo se fija con la variable --stagger-index (ver
+   * Howto.astro/Stack.astro), así el retraso escala a cualquier número de
+   * elementos en vez de quedarse fijo a partir del sexto.
+   */
+  [data-reveal-stagger] > * {
+    transition-delay: calc(var(--stagger-index, 0) * 80ms);
   }
 
   @media (prefers-reduced-motion: reduce) {

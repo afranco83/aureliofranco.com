@@ -31,8 +31,8 @@ const { t } = Astro.props;
         class="flex flex-col gap-10 list-none bg-accent-dark p-5 md:p-8 rounded-2xl"
       >
         {
-          t.items.map((item) => (
-            <li data-reveal>
+          t.items.map((item, index) => (
+            <li data-reveal style={`--stagger-index: ${index}`}>
               <IconCard
                 icon={item.icon}
                 iconClassName="text-white"
