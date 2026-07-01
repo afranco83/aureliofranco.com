@@ -1,5 +1,6 @@
 ---
 import { twMerge } from 'tailwind-merge';
+import { REVEAL_CLASSES } from '@/styles/reveal.ts';
 
 type Props = {
   title: string;
@@ -36,6 +37,7 @@ const descriptionClass = twMerge(
     'flex flex-col gap-3 md:gap-4 lg:gap-5',
     { 'justify-center items-center': align === 'center' },
     { 'justify-end items-end': align === 'right' },
+    { [REVEAL_CLASSES]: reveal },
   ]}
 >
   {level === 2 && <h2 class={headingClass}>{title}</h2>}

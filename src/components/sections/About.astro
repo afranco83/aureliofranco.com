@@ -1,6 +1,7 @@
 ---
 import Container from '../ui/Container.astro';
 import Heading from '../ui/Heading.astro';
+import { REVEAL_CLASSES } from '@/styles/reveal.ts';
 import type { Translations } from '@/i18n/schema.ts';
 
 type Props = {
@@ -15,7 +16,7 @@ const { t } = Astro.props;
     <Heading title={t.title} description={t.description} reveal />
     <div
       data-reveal
-      class="grid gap-5 text-base lg:text-lg text-justify md:gap-18 lg:grid-cols-2"
+      class={`grid gap-5 text-base lg:text-lg text-justify md:gap-18 lg:grid-cols-2 ${REVEAL_CLASSES}`}
     >
       <div class="flex flex-col gap-5">
         {t.text.slice(0, Math.ceil(t.text.length / 2)).map((paragraph) => (

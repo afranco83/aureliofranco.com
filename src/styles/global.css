@@ -46,75 +46,16 @@
 }
 
 /*
- * Scroll reveal: solo se oculta el contenido cuando hay JS disponible
- * (clase `js-reveal` añadida por un script inline en BaseLayout), de modo
- * que sin JS el contenido siempre está visible desde el primer render.
- *
- * [data-curtain-reveal] comparte exactamente el mismo look, pero su
- * data-visible lo controla curtains.ts (no el inView de reveal.ts), para
- * que se dispare cuando terminan de abrirse las puertas del Hero.
+ * El resto del sistema de scroll-reveal vive como clases Tailwind en
+ * src/styles/reveal.ts (REVEAL_CLASSES / CURTAIN_PANEL_CLASSES). Este es
+ * el único caso que sí requiere CSS global: el índice de cada hijo se fija
+ * en tiempo de render vía --stagger-index (Howto.astro/Stack.astro), y
+ * Tailwind no puede generar una clase `delay-*` para un valor calculado en
+ * runtime, ya que su escaneo de utilidades es estático sobre el código
+ * fuente, no sobre el HTML final.
  */
 @layer components {
-  [data-reveal],
-  [data-curtain-reveal] {
-    transition:
-      opacity 0.7s ease-out,
-      transform 0.7s ease-out;
-  }
-
-  html.js-reveal [data-reveal],
-  html.js-reveal [data-curtain-reveal] {
-    opacity: 0;
-    transform: translateY(1.5rem);
-  }
-
-  html.js-reveal [data-reveal][data-visible='true'],
-  html.js-reveal [data-curtain-reveal][data-visible='true'] {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /*
-   * El índice de cada hijo se fija con la variable --stagger-index (ver
-   * Howto.astro/Stack.astro), así el retraso escala a cualquier número de
-   * elementos en vez de quedarse fijo a partir del sexto.
-   */
   [data-reveal-stagger] > * {
     transition-delay: calc(var(--stagger-index, 0) * 80ms);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    [data-reveal],
-    [data-curtain-reveal] {
-      transition: none;
-    }
-
-    html.js-reveal [data-reveal],
-    html.js-reveal [data-curtain-reveal] {
-      opacity: 1;
-      transform: none;
-    }
-  }
-}
-
-/*
- * Cortinas del Hero: al igual que el reveal, solo cubren cuando hay JS
- * disponible para abrirlas después (html.js-reveal). Sin JS, o con
- * prefers-reduced-motion, nunca llegan a pintarse.
- */
-@layer components {
-  [data-curtain] {
-    display: none;
-  }
-
-  html.js-reveal [data-curtain] {
-    display: block;
-    opacity: 0;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html.js-reveal [data-curtain] {
-      display: none;
-    }
   }
 }

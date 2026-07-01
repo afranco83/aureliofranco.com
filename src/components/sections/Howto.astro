@@ -2,6 +2,7 @@
 import Container from '../ui/Container.astro';
 import IconCard from '../ui/IconCard.astro';
 import Heading from '../ui/Heading.astro';
+import { REVEAL_CLASSES } from '@/styles/reveal.ts';
 import type { Translations } from '@/i18n/schema.ts';
 
 type Props = {
@@ -25,7 +26,7 @@ const { t } = Astro.props;
     >
       {
         t.items.map((item, index) => (
-          <li data-reveal style={`--stagger-index: ${index}`}>
+          <li data-reveal class={REVEAL_CLASSES} style={`--stagger-index: ${index}`}>
             <IconCard
               icon={item.icon}
               title={item.title}

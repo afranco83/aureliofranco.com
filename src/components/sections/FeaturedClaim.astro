@@ -1,6 +1,7 @@
 ---
 import Container from '../../components/ui/Container.astro';
 import Claim from '../../components/ui/Claim.astro';
+import { REVEAL_CLASSES } from '@/styles/reveal.ts';
 import type { Translations } from '@/i18n/schema.ts';
 
 type Props = {
@@ -14,7 +15,7 @@ const { t } = Astro.props;
   id="featured-claim"
   class="flex flex-col justify-center min-h-dvh bg-accent text-center text-accent-soft py-20"
 >
-  <Container data-reveal>
+  <Container data-reveal className={REVEAL_CLASSES}>
     <Claim text={t.text} />
   </Container>
 </section>
