@@ -30,16 +30,22 @@ const { t } = Astro.props;
   <Container
     className="h-full p-0 flex flex-col justify-center items-center gap-12 max-w-7xl lg:flex-row"
   >
-    <div data-curtain-reveal class="h-auto text-center w-full lg:text-left">
-      <h1 class="text-white text-3xl font-extrabold min-[440px]:text-5xl lg:text-6xl xl:text-7xl">
+    <div class="h-auto text-center w-full lg:text-left">
+      <h1
+        data-curtain-reveal="2"
+        class="text-white text-3xl font-extrabold min-[440px]:text-5xl lg:text-6xl xl:text-7xl"
+      >
         {t.title}
       </h1>
-      <p class="text-accent text-xl font-extralight min-[440px]:text-3xl lg:text-4xl">
+      <p
+        data-curtain-reveal="3"
+        class="text-accent text-xl font-extralight min-[440px]:text-3xl lg:text-4xl"
+      >
         {t.subtitle}
       </p>
     </div>
     <Image
-      data-curtain-reveal
+      data-curtain-reveal="1"
       src={aurelioFrancoImg}
       alt="Aurelio Franco"
       width={958}

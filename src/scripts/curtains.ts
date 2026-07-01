@@ -21,8 +21,12 @@ if (left && right) {
       left.remove();
       right.remove();
 
-      document.querySelectorAll('[data-curtain-reveal]').forEach((el) => {
-        el.setAttribute('data-visible', 'true');
+      const revealTargets = Array.from(
+        document.querySelectorAll<HTMLElement>('[data-curtain-reveal]'),
+      ).sort((a, b) => Number(a.dataset.curtainReveal) - Number(b.dataset.curtainReveal));
+
+      revealTargets.forEach((el, index) => {
+        setTimeout(() => el.setAttribute('data-visible', 'true'), index * 150);
       });
     });
 }
