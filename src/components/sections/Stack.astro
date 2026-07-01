@@ -11,7 +11,7 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<section id="stack">
+<section id="stack" class="flex flex-col justify-center min-h-dvh py-20">
   <Container>
     <div
       class="grid grid-cols-1 gap-18 justify-center items-center bg-accent-soft p-6 md:p-10 rounded-2xl lg:grid-cols-2"
@@ -21,11 +21,15 @@ const { t } = Astro.props;
         titleClassName="text-accent lg:text-4xl"
         description={t.description}
         descriptionClassName="text-accent-dark text-xl md:w-full"
+        reveal
       />
-      <ul class="flex flex-col gap-10 list-none bg-accent-dark p-5 md:p-8 rounded-2xl">
+      <ul
+        data-reveal-stagger
+        class="flex flex-col gap-10 list-none bg-accent-dark p-5 md:p-8 rounded-2xl"
+      >
         {
           t.items.map((item) => (
-            <li>
+            <li data-reveal>
               <IconCard
                 icon={item.icon}
                 iconClassName="text-white"
