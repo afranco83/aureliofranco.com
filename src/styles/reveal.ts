@@ -9,7 +9,7 @@
  * aspecto visual.
  */
 export const REVEAL_CLASSES =
-  'transition-[opacity,transform] duration-700 ease-out ' +
+  'transition-[opacity,transform] duration-1000 ease-out ' +
   '[html.js-reveal_&]:opacity-0 [html.js-reveal_&]:translate-y-6 ' +
   '[html.js-reveal_&]:data-[visible=true]:opacity-100 [html.js-reveal_&]:data-[visible=true]:translate-y-0 ' +
   'motion-reduce:transition-none motion-reduce:[html.js-reveal_&]:opacity-100 motion-reduce:[html.js-reveal_&]:translate-y-0';
