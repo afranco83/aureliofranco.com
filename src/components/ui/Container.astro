@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<'div'> {
 }
 
 const { className, ...rest } = Astro.props;
-const baseClassName = 'container mx-auto px-5 max-w-6xl';
+const baseClassName = 'container mx-auto px-5 max-w-7xl';
 const fullClassName = twMerge(baseClassName, className);
 ---
 

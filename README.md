@@ -11,6 +11,7 @@ Sitio web personal de **Aurelio Franco**, Frontend Developer. Landing de una sol
 | Framework              | Astro 6 (SSG, islas con `@astrojs/react`)                              |
 | UI interactiva         | React 19                                                               |
 | Estilos                | Tailwind CSS v4 (vía plugin de Vite)                                   |
+| Animaciones            | [Motion](https://motion.dev) (API vanilla, sin React) para scroll-reveal y el efecto de cortinas del Hero |
 | Utilidades             | `tailwind-merge` para composición de clases                            |
 | i18n / Validación      | Zod (schema de traducciones validado en build time)                    |
 | Imágenes               | `sharp` (optimización vía `astro:assets`)                              |
@@ -45,7 +46,12 @@ Sitio web personal de **Aurelio Franco**, Frontend Developer. Landing de una sol
 │   │   ├── index.astro        # Página principal (es)
 │   │   ├── en/index.astro     # Página principal (en)
 │   │   └── playground.astro   # Página de design system para validar tokens visuales
-│   ├── styles/global.css      # Tema Tailwind v4 (`@theme`): tipografía, color, radios
+│   ├── scripts/
+│   │   ├── reveal.ts          # Scroll-reveal genérico ([data-reveal]), cargado en BaseLayout
+│   │   └── curtains.ts        # Efecto de cortinas del Hero, cargado solo desde Hero.astro
+│   ├── styles/
+│   │   ├── global.css         # Tema Tailwind v4 (`@theme`): tipografía, color, radios
+│   │   └── reveal.ts          # Clases Tailwind compartidas del scroll-reveal (REVEAL_CLASSES…)
 │   └── types/icons.ts         # Tipo `IconName` e `ICON_NAMES`, generados automáticamente
 ├── build-sprite.mjs           # Script que genera public/icons.svg + src/types/icons.ts
 ├── astro.config.mjs           # Integraciones (react, tailwind, sitemap) y alias `@` → `src/`
@@ -69,6 +75,16 @@ pnpm build-icons
 ```
 
 > ⚠️ No edites `src/types/icons.ts` a mano: se sobrescribe en cada generación del sprite.
+
+## 🎬 Scroll-reveal y cortinas del Hero
+
+Las secciones se revelan al hacer scroll con [Motion](https://motion.dev), siempre con progressive enhancement: el contenido es visible desde el primer render y solo se oculta si hay JS disponible.
+
+- **`data-reveal`** marca un elemento como animable; `src/scripts/reveal.ts` usa `inView` (IntersectionObserver) para marcarlo `data-visible="true"` al entrar en el viewport. `data-reveal-stagger` en un contenedor escalona sus hijos directos vía la variable `--stagger-index`.
+- El aspecto visual (fade + desplazamiento vertical) vive como clases Tailwind en `src/styles/reveal.ts` (`REVEAL_CLASSES`), no en `global.css` — ver la convención de Estilos en `CLAUDE.md`.
+- Una clase `js-reveal` en `<html>` (añadida por un script inline síncrono en `BaseLayout`) es la que activa el estado oculto; sin ella —JS deshabilitado o bloqueado— el contenido nunca se oculta.
+- El Hero tiene además un efecto de "cortinas" (`src/scripts/curtains.ts`, cargado solo desde `Hero.astro`): dos paneles cubren la sección con un fade in y se abren como puertas, revelando después imagen, título y subtítulo en secuencia.
+- Todo respeta `prefers-reduced-motion: reduce`.
 
 ## 🧞 Comandos
 
@@ -107,6 +123,7 @@ El sitio está disponible en español (`/`) e inglés (`/en/`). El sistema funci
 ## 📝 Estado actual
 
 - Página principal (ES y EN) compuesta por: `Hero` → `About` → `FeaturedClaim` → `Howto` → `Stack` → `Claim` → `Social` (footer).
+- Cada sección ocupa `min-h-dvh` y se revela al hacer scroll (ver [🎬 Scroll-reveal y cortinas del Hero](#-scroll-reveal-y-cortinas-del-hero)); el Hero además tiene un efecto de cortinas al cargar.
 - El `Navbar` fijo en la parte superior permite cambiar entre ES y EN; adapta colores al hacer scroll.
 - Los ficheros en `src/data/` (`about.ts`, `hero.ts`, `howto.ts`, `social.ts`, `stack.ts`) existen pero están **vacíos**: todo el contenido de las secciones vive en `src/i18n/locales/`.
 - `playground.astro` es una página de design system viva (no enlazada desde la navegación) para validar tokens de color, tipografía, botones y cards definidos en `global.css`.

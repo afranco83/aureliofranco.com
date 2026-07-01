@@ -2,6 +2,7 @@
 import Container from '../ui/Container.astro';
 import IconCard from '../ui/IconCard.astro';
 import Heading from '../ui/Heading.astro';
+import { REVEAL_CLASSES } from '@/styles/reveal.ts';
 import type { Translations } from '@/i18n/schema.ts';
 
 type Props = {
@@ -11,19 +12,21 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<section id="how-to">
+<section id="how-to" class="flex flex-col justify-center min-h-dvh py-20">
   <Container className="flex flex-col gap-16">
     <Heading
       title={t.title}
       description={t.description}
       align="center"
+      reveal
     />
     <ul
+      data-reveal-stagger
       class="grid grid-cols-1 gap-9 list-none md:grid-cols-2 md:gap-11 lg:grid-cols-3 lg:gap-16"
     >
       {
-        t.items.map((item) => (
-          <li>
+        t.items.map((item, index) => (
+          <li data-reveal class={REVEAL_CLASSES} style={`--stagger-index: ${index}`}>
             <IconCard
               icon={item.icon}
               title={item.title}

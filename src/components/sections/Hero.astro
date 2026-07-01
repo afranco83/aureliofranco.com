@@ -2,6 +2,7 @@
 import Container from '../ui/Container.astro';
 import { Image } from 'astro:assets';
 import aurelioFrancoImg from '../../assets/images/hero/aureliofranco.webp';
+import { REVEAL_CLASSES, CURTAIN_PANEL_CLASSES } from '@/styles/reveal.ts';
 import type { Translations } from '@/i18n/schema.ts';
 
 type Props = {
@@ -13,27 +14,50 @@ const { t } = Astro.props;
 
 <section
   id="hero"
-  class="flex items-center justify-center bg-black h-auto pt-20 px-9 pb-9 lg:h-screen lg:p-9"
+  class="relative flex items-center justify-center bg-black min-h-dvh px-9 py-20 lg:p-9"
 >
+  <div
+    data-curtain="left"
+    aria-hidden="true"
+    class={`absolute inset-y-0 left-0 z-10 w-1/2 bg-accent pointer-events-none ${CURTAIN_PANEL_CLASSES}`}
+  >
+  </div>
+  <div
+    data-curtain="right"
+    aria-hidden="true"
+    class={`absolute inset-y-0 right-0 z-10 w-1/2 bg-accent pointer-events-none ${CURTAIN_PANEL_CLASSES}`}
+  >
+  </div>
   <Container
     className="h-full p-0 flex flex-col justify-center items-center gap-12 max-w-7xl lg:flex-row"
   >
     <div class="h-auto text-center w-full lg:text-left">
-      <h1 class="text-white text-3xl font-extrabold min-[440px]:text-5xl lg:text-6xl xl:text-7xl">
+      <h1
+        data-curtain-reveal="2"
+        class={`text-white text-3xl font-extrabold min-[440px]:text-5xl lg:text-6xl xl:text-7xl ${REVEAL_CLASSES}`}
+      >
         {t.title}
       </h1>
-      <p class="text-accent text-xl font-extralight min-[440px]:text-3xl lg:text-4xl">
+      <p
+        data-curtain-reveal="3"
+        class={`text-accent text-xl font-extralight min-[440px]:text-3xl lg:text-4xl ${REVEAL_CLASSES}`}
+      >
         {t.subtitle}
       </p>
     </div>
     <Image
+      data-curtain-reveal="1"
       src={aurelioFrancoImg}
       alt="Aurelio Franco"
       width={958}
       height={958}
       loading="eager"
       fetchpriority="high"
-      class="w-60 sm:w-72 md:w-80 lg:w-auto lg:max-w-xl h-auto aspect-square"
+      class={`w-60 sm:w-72 md:w-80 lg:w-auto lg:max-w-xl h-auto aspect-square ${REVEAL_CLASSES}`}
     />
   </Container>
 </section>
+
+<script>
+  import '@/scripts/curtains.ts';
+</script>

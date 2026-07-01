@@ -44,3 +44,18 @@
     color: var(--color-foreground);
   }
 }
+
+/*
+ * El resto del sistema de scroll-reveal vive como clases Tailwind en
+ * src/styles/reveal.ts (REVEAL_CLASSES / CURTAIN_PANEL_CLASSES). Este es
+ * el único caso que sí requiere CSS global: el índice de cada hijo se fija
+ * en tiempo de render vía --stagger-index (Howto.astro/Stack.astro), y
+ * Tailwind no puede generar una clase `delay-*` para un valor calculado en
+ * runtime, ya que su escaneo de utilidades es estático sobre el código
+ * fuente, no sobre el HTML final.
+ */
+@layer components {
+  [data-reveal-stagger] > * {
+    transition-delay: calc(var(--stagger-index, 0) * 80ms);
+  }
+}

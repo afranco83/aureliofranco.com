@@ -1,5 +1,6 @@
 ---
 import { twMerge } from 'tailwind-merge';
+import { REVEAL_CLASSES } from '@/styles/reveal.ts';
 
 type Props = {
   title: string;
@@ -8,6 +9,7 @@ type Props = {
   descriptionClassName?: string;
   align?: 'left' | 'center' | 'right';
   level?: 2 | 3 | 4;
+  reveal?: boolean;
 };
 
 const {
@@ -17,6 +19,7 @@ const {
   descriptionClassName,
   align = 'left',
   level = 2,
+  reveal = false,
 } = Astro.props;
 
 const headingClass = twMerge('text-3xl md:text-4xl lg:text-5xl text-foreground font-black', titleClassName);
@@ -29,10 +32,12 @@ const descriptionClass = twMerge(
 ---
 
 <div
+  data-reveal={reveal || undefined}
   class:list={[
     'flex flex-col gap-3 md:gap-4 lg:gap-5',
     { 'justify-center items-center': align === 'center' },
     { 'justify-end items-end': align === 'right' },
+    { [REVEAL_CLASSES]: reveal },
   ]}
 >
   {level === 2 && <h2 class={headingClass}>{title}</h2>}
