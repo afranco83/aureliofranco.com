@@ -13,12 +13,12 @@ const { t } = Astro.props;
 
 <section
   id="hero"
-  class="flex items-center justify-center bg-black h-auto pt-20 px-9 pb-9 lg:h-screen lg:p-9"
+  class="flex items-center justify-center bg-black min-h-dvh px-9 py-20 lg:p-9"
 >
   <Container
     className="h-full p-0 flex flex-col justify-center items-center gap-12 max-w-7xl lg:flex-row"
   >
-    <div class="h-auto text-center w-full lg:text-left">
+    <div data-reveal class="h-auto text-center w-full lg:text-left">
       <h1 class="text-white text-3xl font-extrabold min-[440px]:text-5xl lg:text-6xl xl:text-7xl">
         {t.title}
       </h1>
@@ -26,6 +26,7 @@ const { t } = Astro.props;
         {t.subtitle}
       </p>
     </div>
+    {/* Sin data-reveal: es la imagen LCP y no debe retrasar su pintado final */}
     <Image
       src={aurelioFrancoImg}
       alt="Aurelio Franco"
