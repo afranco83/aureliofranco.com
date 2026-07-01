@@ -4,8 +4,8 @@ const left = document.querySelector<HTMLElement>('[data-curtain="left"]');
 const right = document.querySelector<HTMLElement>('[data-curtain="right"]');
 
 if (left && right) {
-  const fadeInOptions = { duration: 0.35, easing: 'ease-out' } as const;
-  const slideOutOptions = { duration: 0.8, delay: 0.15, easing: 'ease-in-out' } as const;
+  const fadeInOptions = { duration: 0.35, ease: 'easeOut' } as const;
+  const slideOutOptions = { duration: 0.8, delay: 0.15, ease: 'easeInOut' } as const;
 
   const revealContent = () => {
     left.remove();
