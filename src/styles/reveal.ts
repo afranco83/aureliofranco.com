@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge';
  * aspecto visual.
  */
 export const REVEAL_CLASSES = twMerge(
-  'transition-[opacity,translate] duration-1000 ease-in-out',
+  'transition-[opacity,translate] duration-700 ease-in-out',
   '[html.js-reveal_&]:opacity-0 [html.js-reveal_&]:translate-y-6',
   '[html.js-reveal_&]:data-[visible=true]:opacity-100 [html.js-reveal_&]:data-[visible=true]:translate-y-0',
   'motion-reduce:transition-none',
