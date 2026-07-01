@@ -59,6 +59,9 @@ const jsonLd = JSON.stringify({
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>
+      document.documentElement.classList.add('js-reveal');
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -97,11 +100,14 @@ const jsonLd = JSON.stringify({
 
   <body>
     <Navbar lang={lang} />
-    <main class="flex flex-col gap-16 md:gap-24 lg:gap-40">
+    <main class="flex flex-col">
       <slot />
     </main>
     <footer class="mt-16 md:mt-24 lg:mt-40">
       <slot name="footer" />
     </footer>
+    <script>
+      import '@/scripts/reveal.ts';
+    </script>
   </body>
 </html>
