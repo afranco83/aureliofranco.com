@@ -125,6 +125,19 @@ Tailwind CSS v4 vía `@tailwindcss/vite`. Sin archivo de configuración separado
 - Clases de layout y tipografía base en el propio componente; overrides via prop `className` fusionado con `twMerge`.
 - No añadir estilos globales en `global.css` salvo que sea imposible hacerlo con Tailwind.
 
+## Animaciones
+
+Scroll-reveal con [Motion](https://motion.dev) (API vanilla, sin React ni `client:*`).
+
+- Para revelar un elemento al hacer scroll: añadir el atributo `data-reveal` y fusionar `REVEAL_CLASSES` (de `@/styles/reveal.ts`) en su `class`. `src/scripts/reveal.ts` (cargado globalmente en `BaseLayout`) usa `inView` para marcarlo `data-visible="true"`.
+- `data-reveal-stagger` en el contenedor escalona sus hijos directos vía `--stagger-index` (estilo inline) — es la única pieza de CSS global del sistema (`global.css`), porque Tailwind escanea clases de forma estática y no puede generar una utilidad `delay-*` para un valor calculado en runtime.
+- Progressive enhancement obligatorio: el contenido nunca se oculta salvo que `<html>` tenga la clase `js-reveal` (añadida por un script inline síncrono en `BaseLayout`, nunca condicionada a que el resto del JS cargue bien). Sin JS, o si el bundle falla, el contenido debe seguir siendo visible — nunca `display:none`/`visibility:hidden` sobre contenido real.
+- Toda cadena de animaciones que controle si algo se vuelve visible necesita un `.catch()`/fallback: si la promesa se rechaza, el contenido no puede quedar oculto para siempre.
+- Scripts específicos de una sección (como `curtains.ts` del Hero) se cargan con un `<script>` en el propio componente, no en `BaseLayout` — así páginas que no usan esa sección no cargan ni ejecutan su lógica.
+- **Tailwind v4 anima `translate`/`scale`/`rotate`, no `transform`**: las utilidades `translate-x-*`/`translate-y-*` fijan la propiedad CSS `translate`, así que una transición debe declararse como `transition-[opacity,translate]` (no `transition-[opacity,transform]`) o el movimiento no se anima, solo el fade.
+- Motion en `animate()` usa la clave `ease` (no `easing`) con nombres en camelCase (`easeOut`, `easeInOut`). Si se pasan las opciones como variable (no como literal inline), TypeScript no avisa de una clave inválida — verificar el bundle compilado si hay dudas.
+- Respetar siempre `prefers-reduced-motion: reduce`.
+
 ## Performance
 
 - **Scroll listeners**: siempre con `{ passive: true }`.
