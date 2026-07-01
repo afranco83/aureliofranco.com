@@ -11,19 +11,21 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<section id="how-to">
+<section id="how-to" class="flex flex-col justify-center min-h-dvh py-20">
   <Container className="flex flex-col gap-16">
     <Heading
       title={t.title}
       description={t.description}
       align="center"
+      reveal
     />
     <ul
+      data-reveal-stagger
       class="grid grid-cols-1 gap-9 list-none md:grid-cols-2 md:gap-11 lg:grid-cols-3 lg:gap-16"
     >
       {
         t.items.map((item) => (
-          <li>
+          <li data-reveal>
             <IconCard
               icon={item.icon}
               title={item.title}
