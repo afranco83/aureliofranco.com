@@ -11,10 +11,13 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<section id="stack" class="flex flex-col justify-center min-h-dvh py-20">
+<section
+  id="stack"
+  class="flex flex-col justify-center min-h-dvh py-20 bg-accent-soft"
+>
   <Container>
     <div
-      class="grid grid-cols-1 gap-18 justify-center items-center bg-accent-soft p-6 md:p-10 rounded-2xl lg:grid-cols-2"
+      class="grid grid-cols-1 gap-20 justify-center items-center bg-accent-soft rounded-2xl lg:grid-cols-2"
     >
       <Heading
         title={t.title}
