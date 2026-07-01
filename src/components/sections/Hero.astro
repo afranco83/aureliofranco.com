@@ -30,7 +30,7 @@ const { t } = Astro.props;
   <Container
     className="h-full p-0 flex flex-col justify-center items-center gap-12 max-w-7xl lg:flex-row"
   >
-    <div data-reveal class="h-auto text-center w-full lg:text-left">
+    <div data-curtain-reveal class="h-auto text-center w-full lg:text-left">
       <h1 class="text-white text-3xl font-extrabold min-[440px]:text-5xl lg:text-6xl xl:text-7xl">
         {t.title}
       </h1>
@@ -38,8 +38,8 @@ const { t } = Astro.props;
         {t.subtitle}
       </p>
     </div>
-    {/* Sin data-reveal: es la imagen LCP y no debe retrasar su pintado final */}
     <Image
+      data-curtain-reveal
       src={aurelioFrancoImg}
       alt="Aurelio Franco"
       width={958}

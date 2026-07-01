@@ -49,20 +49,27 @@
  * Scroll reveal: solo se oculta el contenido cuando hay JS disponible
  * (clase `js-reveal` añadida por un script inline en BaseLayout), de modo
  * que sin JS el contenido siempre está visible desde el primer render.
+ *
+ * [data-curtain-reveal] comparte exactamente el mismo look, pero su
+ * data-visible lo controla curtains.ts (no el inView de reveal.ts), para
+ * que se dispare cuando terminan de abrirse las puertas del Hero.
  */
 @layer components {
-  [data-reveal] {
+  [data-reveal],
+  [data-curtain-reveal] {
     transition:
       opacity 0.7s ease-out,
       transform 0.7s ease-out;
   }
 
-  html.js-reveal [data-reveal] {
+  html.js-reveal [data-reveal],
+  html.js-reveal [data-curtain-reveal] {
     opacity: 0;
     transform: translateY(1.5rem);
   }
 
-  html.js-reveal [data-reveal][data-visible='true'] {
+  html.js-reveal [data-reveal][data-visible='true'],
+  html.js-reveal [data-curtain-reveal][data-visible='true'] {
     opacity: 1;
     transform: translateY(0);
   }
@@ -87,11 +94,13 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    [data-reveal] {
+    [data-reveal],
+    [data-curtain-reveal] {
       transition: none;
     }
 
-    html.js-reveal [data-reveal] {
+    html.js-reveal [data-reveal],
+    html.js-reveal [data-curtain-reveal] {
       opacity: 1;
       transform: none;
     }

@@ -20,5 +20,9 @@ if (left && right) {
     .then(() => {
       left.remove();
       right.remove();
+
+      document.querySelectorAll('[data-curtain-reveal]').forEach((el) => {
+        el.setAttribute('data-visible', 'true');
+      });
     });
 }
