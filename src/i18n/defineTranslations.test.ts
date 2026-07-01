@@ -27,19 +27,25 @@ const minimalValidTranslations = {
 
 describe('defineTranslations', () => {
   it('should return the translations object when input is valid', () => {
-    expect(defineTranslations(minimalValidTranslations)).toEqual(minimalValidTranslations);
+    expect(defineTranslations(minimalValidTranslations)).toEqual(
+      minimalValidTranslations,
+    );
   });
 
   it('should throw when a required top-level key is missing', () => {
     const withoutHero = Object.fromEntries(
-      Object.entries(minimalValidTranslations).filter(([key]) => key !== 'hero'),
+      Object.entries(minimalValidTranslations).filter(
+        ([key]) => key !== 'hero',
+      ),
     );
     expect(() => defineTranslations(withoutHero)).toThrow();
   });
 
   it('should throw when meta is missing', () => {
     const withoutMeta = Object.fromEntries(
-      Object.entries(minimalValidTranslations).filter(([key]) => key !== 'meta'),
+      Object.entries(minimalValidTranslations).filter(
+        ([key]) => key !== 'meta',
+      ),
     );
     expect(() => defineTranslations(withoutMeta)).toThrow();
   });
@@ -82,10 +88,15 @@ describe('defineTranslations', () => {
 
   it('should throw when social.label is missing', () => {
     const socialWithoutLabel = Object.fromEntries(
-      Object.entries(minimalValidTranslations.social).filter(([key]) => key !== 'label'),
+      Object.entries(minimalValidTranslations.social).filter(
+        ([key]) => key !== 'label',
+      ),
     );
     expect(() =>
-      defineTranslations({ ...minimalValidTranslations, social: socialWithoutLabel }),
+      defineTranslations({
+        ...minimalValidTranslations,
+        social: socialWithoutLabel,
+      }),
     ).toThrow();
   });
 
@@ -95,7 +106,9 @@ describe('defineTranslations', () => {
         ...minimalValidTranslations,
         howTo: {
           ...minimalValidTranslations.howTo,
-          items: [{ icon: 'NotAnIcon', title: 'Step', description: 'Description' }],
+          items: [
+            { icon: 'NotAnIcon', title: 'Step', description: 'Description' },
+          ],
         },
       }),
     ).toThrow();

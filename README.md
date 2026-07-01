@@ -6,20 +6,20 @@ Sitio web personal de **Aurelio Franco**, Frontend Developer. Landing de una sol
 
 ## 🚀 Stack técnico
 
-| Categoría              | Tecnología                                                             |
-| ---------------------- | ---------------------------------------------------------------------- |
-| Framework              | Astro 6 (SSG, islas con `@astrojs/react`)                              |
-| UI interactiva         | React 19                                                               |
-| Estilos                | Tailwind CSS v4 (vía plugin de Vite)                                   |
-| Utilidades             | `tailwind-merge` para composición de clases                            |
-| i18n / Validación      | Zod (schema de traducciones validado en build time)                    |
-| Imágenes               | `sharp` (optimización vía `astro:assets`)                              |
-| Tipado                 | TypeScript (`astro check`)                                             |
-| Tests                  | Vitest (suites unitarias para el sistema i18n)                         |
-| Lint / Format          | ESLint 10 + `eslint-plugin-astro`, Prettier                            |
-| Convenciones de commit | Commitlint + `cz-git` + Husky (hooks `commit-msg` / `pre-commit`)      |
+| Categoría              | Tecnología                                                                                     |
+| ---------------------- | ---------------------------------------------------------------------------------------------- |
+| Framework              | Astro 6 (SSG, islas con `@astrojs/react`)                                                      |
+| UI interactiva         | React 19                                                                                       |
+| Estilos                | Tailwind CSS v4 (vía plugin de Vite)                                                           |
+| Utilidades             | `tailwind-merge` para composición de clases                                                    |
+| i18n / Validación      | Zod (schema de traducciones validado en build time)                                            |
+| Imágenes               | `sharp` (optimización vía `astro:assets`)                                                      |
+| Tipado                 | TypeScript (`astro check`)                                                                     |
+| Tests                  | Vitest (suites unitarias para el sistema i18n)                                                 |
+| Lint / Format          | ESLint 10 + `eslint-plugin-astro`, Prettier                                                    |
+| Convenciones de commit | Commitlint + `cz-git` + Husky (hooks `commit-msg` / `pre-commit`)                              |
 | CI / CD                | GitHub Actions (CI: `lint` → `typecheck` → `test` → `build`; deploy automático a GitHub Pages) |
-| Gestor de paquetes     | pnpm (workspace)                                                       |
+| Gestor de paquetes     | pnpm (workspace)                                                                               |
 
 ## 📁 Estructura del proyecto
 

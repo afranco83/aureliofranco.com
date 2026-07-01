@@ -1,4 +1,9 @@
-import { defaultLocale, getTranslations, isValidLocale, locales } from '@/i18n/index';
+import {
+  defaultLocale,
+  getTranslations,
+  isValidLocale,
+  locales,
+} from '@/i18n/index';
 
 describe('isValidLocale', () => {
   it('should return true for "es"', () => {

@@ -46,10 +46,14 @@ Usar siempre `type` para Props y tipos locales. La única excepción válida es 
 type Props = { title: string; className?: string };
 
 // correcto — interface cuando se extiende HTMLAttributes
-interface Props extends HTMLAttributes<'div'> { className?: string }
+interface Props extends HTMLAttributes<'div'> {
+  className?: string;
+}
 
 // incorrecto — interface sin necesidad de extensión
-interface Props { title: string }
+interface Props {
+  title: string;
+}
 ```
 
 **Imports**
