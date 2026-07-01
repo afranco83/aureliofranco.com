@@ -10,8 +10,12 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<div id="featured-claim" class="bg-accent text-center text-accent-soft p-8">
+<section
+  id="featured-claim"
+  class="flex min-h-dvh flex-col justify-center bg-accent p-8 text-center text-accent-soft px-6 py-10"
+  data-reveal="fade-scale"
+>
   <Container>
     <Claim text={t.text} />
   </Container>
-</div>
+</section>

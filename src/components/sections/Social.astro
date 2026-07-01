@@ -10,7 +10,12 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<section id="social" aria-label={t.label}>
+<section
+  id="social"
+  aria-label={t.label}
+  class="flex min-h-dvh flex-col justify-center bg-gray-50 px-6 py-10"
+  data-reveal="wipe-top"
+>
   <Container>
     <ul class="flex justify-center gap-8 mb-32">
       {
