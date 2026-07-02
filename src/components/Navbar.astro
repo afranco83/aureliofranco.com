@@ -1,19 +1,80 @@
 ---
 import type { Locale } from '@/i18n/index.ts';
+import type { Translations } from '@/i18n/schema.ts';
+import Icon from '@/components/ui/Icon.astro';
 
 type Props = {
   lang: Locale;
+  t: Translations['nav'];
 };
 
-const { lang } = Astro.props;
+const { lang, t } = Astro.props;
 ---
 
 <header
   id="navbar"
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
 >
-  <nav aria-label="Idioma" class="flex justify-end items-center px-9 py-5">
-    <div class="flex items-center gap-3 text-sm font-semibold tracking-widest uppercase">
+  <div class="relative flex items-center justify-between px-9 py-5">
+    <nav aria-label={t.menuLabel} class="hidden lg:block">
+      <ul class="flex items-center gap-6 text-xs font-medium tracking-widest uppercase">
+        {
+          t.items.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                data-nav-link
+                data-nav-scope="desktop"
+                class="nav-inactive text-white transition-colors hover:text-accent"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <details class="nav-details group lg:hidden">
+      <summary
+        aria-label={t.menuLabel}
+        class="nav-inactive flex w-fit list-none items-center text-white transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent [&::-webkit-details-marker]:hidden"
+      >
+        <span class="relative inline-block size-8">
+          <Icon
+            name="Menu"
+            size="md"
+            className="absolute inset-0 transition-opacity group-open:opacity-0"
+          />
+          <Icon
+            name="CloseRound"
+            size="md"
+            className="absolute inset-0 opacity-0 transition-opacity group-open:opacity-100"
+          />
+        </span>
+      </summary>
+      <ul class="absolute top-full left-0 flex w-full flex-col gap-1 bg-white p-6 text-xs font-medium tracking-widest uppercase shadow-md">
+        {
+          t.items.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                data-nav-link
+                data-nav-scope="mobile"
+                class="block py-2 text-foreground transition-colors hover:text-accent"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </details>
+
+    <nav
+      aria-label="Idioma"
+      class="flex items-center gap-3 text-sm font-semibold tracking-widest uppercase"
+    >
       <a
         href="/"
         aria-current={lang === 'es' ? 'page' : undefined}
@@ -35,22 +96,25 @@ const { lang } = Astro.props;
             : 'nav-inactive text-white hover:text-accent',
         ]}
       >EN</a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
 
 <script>
+  const SCROLL_THRESHOLD = 80;
+
   const navbar = document.getElementById('navbar') as HTMLElement;
-  const inactiveLinks = navbar.querySelectorAll<HTMLElement>('.nav-inactive');
   const sep = navbar.querySelector<HTMLElement>('.nav-sep');
+  const details = navbar.querySelector<HTMLDetailsElement>('.nav-details');
+  const navLinks = navbar.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
 
   function update() {
-    const scrolled = window.scrollY > 80;
+    const scrolled = window.scrollY > SCROLL_THRESHOLD;
 
     navbar.classList.toggle('bg-white', scrolled);
     navbar.classList.toggle('shadow-sm', scrolled);
 
-    for (const link of inactiveLinks) {
+    for (const link of navbar.querySelectorAll<HTMLElement>('.nav-inactive')) {
       link.classList.toggle('text-white', !scrolled);
       link.classList.toggle('text-foreground', scrolled);
     }
@@ -63,4 +127,59 @@ const { lang } = Astro.props;
 
   window.addEventListener('scroll', update, { passive: true });
   update();
+
+  details?.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).closest('[data-nav-link]')) {
+      details.open = false;
+    }
+  });
+
+  if ('IntersectionObserver' in window) {
+    const sectionLinks = new Map<Element, HTMLAnchorElement[]>();
+
+    for (const link of navLinks) {
+      const target = document.querySelector(link.getAttribute('href') ?? '');
+      if (!target) continue;
+      sectionLinks.set(target, [...(sectionLinks.get(target) ?? []), link]);
+    }
+
+    const setActive = (activeLinks: HTMLAnchorElement[]) => {
+      const scrolled = window.scrollY > SCROLL_THRESHOLD;
+
+      for (const link of navLinks) {
+        const isActive = activeLinks.includes(link);
+        const isDesktopLink = link.dataset.navScope === 'desktop';
+        // Antes de hacer scroll, los links de escritorio aún se solapan con
+        // los paneles `bg-accent` de la cortina del Hero: forzar el color
+        // activo ahí produciría texto dorado sobre fondo dorado.
+        const showActive = isActive && (!isDesktopLink || scrolled);
+
+        if (isDesktopLink) {
+          link.classList.toggle('nav-inactive', !showActive);
+          if (showActive) link.classList.remove('text-white', 'text-foreground');
+        }
+        link.classList.toggle('text-accent', showActive);
+
+        if (isActive) {
+          link.setAttribute('aria-current', 'location');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      }
+      update();
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        const activeLinks = visible && sectionLinks.get(visible.target);
+        if (activeLinks) setActive(activeLinks);
+      },
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 },
+    );
+
+    for (const section of sectionLinks.keys()) {
+      observer.observe(section);
+    }
+  }
 </script>

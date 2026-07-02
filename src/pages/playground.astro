@@ -1,8 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getTranslations } from '@/i18n/index.ts';
+
+const t = getTranslations('es');
 ---
 
-<BaseLayout title="Design Playground">
+<BaseLayout title="Design Playground" nav={t.nav}>
   <main class="container py-16 space-y-16">
     <section class="space-y-6">
       <h1 class="text-6xl font-bold">

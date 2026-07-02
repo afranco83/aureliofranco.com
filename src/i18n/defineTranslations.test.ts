@@ -5,6 +5,7 @@ const validIcon = ICON_NAMES[0];
 
 const minimalValidTranslations = {
   meta: { title: 'Title', description: 'Description' },
+  nav: { menuLabel: 'Menu', items: [{ href: '#hero', label: 'Home' }] },
   hero: { title: 'Title', subtitle: 'Subtitle' },
   aboutMe: { title: 'About', description: 'Description', text: ['Paragraph'] },
   featuredClaim: { text: 'Claim' },
