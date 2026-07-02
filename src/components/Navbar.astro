@@ -38,7 +38,7 @@ const { lang, t } = Astro.props;
     <details class="nav-details group lg:hidden">
       <summary
         aria-label={t.menuLabel}
-        class="nav-inactive flex w-fit list-none items-center text-white transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent [&::-webkit-details-marker]:hidden"
+        class="nav-inactive relative z-10 flex w-fit list-none items-center text-white transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent [&::-webkit-details-marker]:hidden"
       >
         <span class="relative inline-block size-8">
           <Icon
@@ -49,11 +49,11 @@ const { lang, t } = Astro.props;
           <Icon
             name="CloseRound"
             size="md"
-            className="absolute inset-0 opacity-0 transition-opacity group-open:opacity-100"
+            className="absolute inset-0 text-foreground opacity-0 transition-opacity group-open:opacity-100"
           />
         </span>
       </summary>
-      <ul class="absolute top-full left-0 flex w-full flex-col gap-1 bg-white p-6 text-xs font-medium tracking-widest uppercase shadow-md">
+      <ul class="fixed inset-0 flex flex-col items-center justify-center gap-10 bg-white text-2xl font-semibold tracking-widest uppercase">
         {
           t.items.map((item) => (
             <li>
@@ -61,7 +61,7 @@ const { lang, t } = Astro.props;
                 href={item.href}
                 data-nav-link
                 data-nav-scope="mobile"
-                class="block py-2 text-foreground transition-colors hover:text-accent"
+                class="text-foreground transition-colors hover:text-accent"
               >
                 {item.label}
               </a>
