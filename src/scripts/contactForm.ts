@@ -69,8 +69,14 @@ if (trigger && dialog && form && closeButton && statusEl && submitButton && turn
     if (event.target === dialog) dialog.close();
   });
 
-  const setStatus = (message: string | undefined) => {
+  const STATUS_COLOR_CLASSES = ['text-subtle', 'text-green-600', 'text-red-600'];
+
+  const setStatus = (message: string | undefined, variant: 'sending' | 'success' | 'error') => {
     statusEl.textContent = message ?? '';
+    statusEl.classList.remove(...STATUS_COLOR_CLASSES);
+    statusEl.classList.add(
+      variant === 'success' ? 'text-green-600' : variant === 'error' ? 'text-red-600' : 'text-subtle',
+    );
   };
 
   form.addEventListener('submit', async (event) => {
@@ -80,12 +86,12 @@ if (trigger && dialog && form && closeButton && statusEl && submitButton && turn
     if (String(formData.get('company') ?? '')) return; // honeypot: abortar en silencio
 
     if (!turnstileToken) {
-      setStatus(statusEl.dataset.statusError);
+      setStatus(statusEl.dataset.statusError, 'error');
       return;
     }
 
     submitButton.disabled = true;
-    setStatus(statusEl.dataset.statusSending);
+    setStatus(statusEl.dataset.statusSending, 'sending');
 
     try {
       const response = await fetch('/api/contact', {
@@ -101,12 +107,12 @@ if (trigger && dialog && form && closeButton && statusEl && submitButton && turn
 
       if (!response.ok) throw new Error('request_failed');
 
-      setStatus(statusEl.dataset.statusSuccess);
+      setStatus(statusEl.dataset.statusSuccess, 'success');
       form.reset();
       if (turnstileWidgetId !== undefined) window.turnstile?.reset(turnstileWidgetId);
       turnstileToken = undefined;
     } catch {
-      setStatus(statusEl.dataset.statusError);
+      setStatus(statusEl.dataset.statusError, 'error');
       if (turnstileWidgetId !== undefined) window.turnstile?.reset(turnstileWidgetId);
       turnstileToken = undefined;
     } finally {
