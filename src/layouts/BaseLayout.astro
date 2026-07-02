@@ -11,8 +11,12 @@ type Props = {
   nav: Translations['nav'];
 };
 
-const { title = 'Aurelio Franco', description = 'Frontend Developer', lang = 'es', nav } =
-  Astro.props;
+const {
+  title = 'Aurelio Franco',
+  description = 'Frontend Developer',
+  lang = 'es',
+  nav,
+} = Astro.props;
 
 const siteUrl = Astro.site?.href ?? 'https://www.aureliofranco.com/';
 const canonicalUrl = lang === 'en' ? `${siteUrl}en/` : siteUrl;
@@ -53,7 +57,10 @@ const jsonLd = JSON.stringify({
           'SEO',
           'CI/CD',
         ],
-  sameAs: ['https://www.linkedin.com/in/aureliofranco', 'https://github.com/afranco83'],
+  sameAs: [
+    'https://www.linkedin.com/in/aureliofranco',
+    'https://github.com/afranco83',
+  ],
 });
 ---
 
@@ -102,7 +109,7 @@ const jsonLd = JSON.stringify({
 
   <body>
     <Navbar lang={lang} t={nav} />
-    <main class="flex flex-col">
+    <main class="flex flex-col overflow-hidden">
       <slot />
     </main>
     <footer class="mt-16 md:mt-24 lg:mt-40">
