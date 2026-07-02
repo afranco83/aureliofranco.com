@@ -112,8 +112,8 @@ export const en = defineTranslations({
   },
   social: {
     label: 'Contact',
-    title: "Let's connect",
-    description: 'Always glad to connect, share ideas or just say hi.',
+    title: 'In touch',
+    description: 'An open space to share ideas, ask questions or simply say hello.',
     email: {
       label: 'Email me',
       href: 'mailto:info@aureliofranco.com',
