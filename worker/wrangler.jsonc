@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "aureliofranco-contact",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-02",
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    {
+      "pattern": "www.aureliofranco.com/api/contact",
+      "zone_name": "aureliofranco.com",
+    },
+  ],
+  "send_email": [
+    {
+      "name": "SEND_EMAIL",
+      // Sin "destination_address": así la dirección real de destino no
+      // aparece en ningún archivo del repo. Sin restricción explícita,
+      // Cloudflare solo permite enviar a destinos ya verificados en la
+      // cuenta — que es exactamente una única dirección (ver TURNSTILE_SECRET_KEY
+      // más abajo para el mecanismo de secrets).
+    },
+  ],
+  // TURNSTILE_SECRET_KEY y CONTACT_DESTINATION_EMAIL se inyectan con
+  // `wrangler secret put <NOMBRE>`, nunca se declaran aquí.
+}

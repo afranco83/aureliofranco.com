@@ -25,6 +25,18 @@ const minimalValidTranslations = {
     title: 'Title',
     description: 'Description',
     email: { label: 'Email me', href: 'mailto:test@example.com' },
+    contactForm: {
+      title: 'Send a message',
+      description: 'Description',
+      closeLabel: 'Close',
+      fields: {
+        fullName: { label: 'Full name' },
+        email: { label: 'Email' },
+        message: { label: 'Message' },
+      },
+      submitLabel: 'Send',
+      status: { sending: 'Sending', success: 'Success', error: 'Error' },
+    },
     items: [{ title: 'Social', icon: validIcon, href: 'https://example.com' }],
     madeWith: 'Made with',
     madeBy: 'by Someone',

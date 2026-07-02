@@ -35,6 +35,28 @@ const navItemSchema = z.object({
   label: text,
 });
 
+const contactFieldSchema = z.object({
+  label: text,
+  placeholder: text.optional(),
+});
+
+const contactFormSchema = z.object({
+  title: text,
+  description: text,
+  closeLabel: text,
+  fields: z.object({
+    fullName: contactFieldSchema,
+    email: contactFieldSchema,
+    message: contactFieldSchema,
+  }),
+  submitLabel: text,
+  status: z.object({
+    sending: text,
+    success: text,
+    error: text,
+  }),
+});
+
 export const translationsSchema = z.object({
   meta: z.object({
     title: text,
@@ -66,6 +88,7 @@ export const translationsSchema = z.object({
     items: z.array(socialItemSchema).min(1),
     madeWith: text,
     madeBy: text,
+    contactForm: contactFormSchema,
   }),
 });
 

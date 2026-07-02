@@ -1,0 +1,46 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+type Props = {
+  id: string;
+  name: string;
+  label: string;
+  rows?: number;
+  required?: boolean;
+  minlength?: number;
+  maxlength?: number;
+  placeholder?: string;
+  className?: string;
+};
+
+const {
+  id,
+  name,
+  label,
+  rows = 5,
+  required = true,
+  minlength,
+  maxlength,
+  placeholder,
+  className,
+} = Astro.props;
+
+const textareaClassName = twMerge(
+  'w-full resize-none rounded-lg border border-muted px-4 py-3 text-sm text-foreground placeholder:text-subtle focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent',
+  className,
+);
+---
+
+<div class="flex flex-col gap-2 text-left">
+  <label for={id} class="text-xs font-medium tracking-widest text-subtle uppercase">{label}</label>
+  <textarea
+    id={id}
+    name={name}
+    rows={rows}
+    required={required}
+    minlength={minlength}
+    maxlength={maxlength}
+    placeholder={placeholder}
+    class={textareaClassName}
+  />
+</div>
