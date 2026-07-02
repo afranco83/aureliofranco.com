@@ -1,0 +1,70 @@
+---
+import type { Translations } from '@/i18n/schema.ts';
+import Modal from '../ui/Modal.astro';
+import Input from '../ui/Input.astro';
+import Textarea from '../ui/Textarea.astro';
+import Button from '../ui/Button.astro';
+
+type Props = {
+  t: Translations['social']['contactForm'];
+};
+
+const { t } = Astro.props;
+
+const TURNSTILE_SITE_KEY = '0x4AAAAAADuqABQ1aF_V1lg-';
+---
+
+<Modal id="contact-dialog" titleId="contact-dialog-title" closeLabel={t.closeLabel}>
+  <h2 id="contact-dialog-title" class="text-2xl font-black text-foreground">{t.title}</h2>
+  <p class="text-sm text-subtle">{t.description}</p>
+
+  <form data-contact-form class="flex flex-col gap-5">
+    <Input
+      id="contact-fullName"
+      name="fullName"
+      label={t.fields.fullName.label}
+      placeholder={t.fields.fullName.placeholder}
+      minlength={2}
+      maxlength={100}
+      autocomplete="name"
+    />
+    <Input
+      id="contact-email"
+      name="email"
+      type="email"
+      label={t.fields.email.label}
+      placeholder={t.fields.email.placeholder}
+      maxlength={320}
+      autocomplete="email"
+    />
+    <Textarea
+      id="contact-message"
+      name="message"
+      label={t.fields.message.label}
+      placeholder={t.fields.message.placeholder}
+      minlength={10}
+      maxlength={2000}
+    />
+
+    <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" class="sr-only" />
+
+    <div id="contact-turnstile" data-sitekey={TURNSTILE_SITE_KEY}></div>
+
+    <p
+      role="status"
+      aria-live="polite"
+      data-form-status
+      data-status-sending={t.status.sending}
+      data-status-success={t.status.success}
+      data-status-error={t.status.error}
+      class="min-h-5 text-sm text-subtle"
+    >
+    </p>
+
+    <Button type="submit" data-submit-button className="w-full">{t.submitLabel}</Button>
+  </form>
+</Modal>
+
+<script>
+  import '@/scripts/contactForm.ts';
+</script>

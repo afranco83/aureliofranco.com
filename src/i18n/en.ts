@@ -112,11 +112,27 @@ export const en = defineTranslations({
   },
   social: {
     label: 'Contact',
-    title: "Let's connect",
-    description: 'Always glad to connect, share ideas or just say hi.',
+    title: 'In touch',
+    description: 'An open space to share ideas, ask questions or simply say hello.',
     email: {
       label: 'Email me',
       href: 'mailto:info@aureliofranco.com',
+    },
+    contactForm: {
+      title: 'Send a message',
+      description: "Fill in the form and I'll get back to you as soon as possible.",
+      closeLabel: 'Close',
+      fields: {
+        fullName: { label: 'Full name', placeholder: 'Your name' },
+        email: { label: 'Email', placeholder: 'you@email.com' },
+        message: { label: 'Message', placeholder: 'Tell me how I can help' },
+      },
+      submitLabel: 'Send',
+      status: {
+        sending: 'Sending…',
+        success: "Message sent. Thanks for writing, I'll get back to you soon.",
+        error: "The message couldn't be sent. Please try again in a few minutes.",
+      },
     },
     items: [
       {

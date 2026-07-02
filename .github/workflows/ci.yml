@@ -2,9 +2,13 @@ name: CI
 
 on:
   pull_request:
+    paths-ignore:
+      - 'worker/**'
   push:
     branches:
       - main
+    paths-ignore:
+      - 'worker/**'
 
 jobs:
   lint:

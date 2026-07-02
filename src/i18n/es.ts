@@ -112,11 +112,27 @@ export const es = defineTranslations({
   },
   social: {
     label: 'Contacto',
-    title: 'Conectemos',
-    description: 'Encantado de conectar, compartir ideas o simplemente saludar.',
+    title: 'En contacto',
+    description: 'Un espacio abierto a compartir ideas, resolver dudas o simplemente saludar.',
     email: {
       label: 'Escríbeme',
       href: 'mailto:info@aureliofranco.com',
+    },
+    contactForm: {
+      title: 'Enviar un mensaje',
+      description: 'Completa el formulario y te responderé lo antes posible.',
+      closeLabel: 'Cerrar',
+      fields: {
+        fullName: { label: 'Nombre completo', placeholder: 'Tu nombre' },
+        email: { label: 'Email', placeholder: 'tu@email.com' },
+        message: { label: 'Mensaje', placeholder: 'Cuéntame en qué puedo ayudarte' },
+      },
+      submitLabel: 'Enviar',
+      status: {
+        sending: 'Enviando…',
+        success: 'Mensaje enviado. Gracias por escribir, te responderé pronto.',
+        error: 'No se ha podido enviar el mensaje. Inténtalo de nuevo en unos minutos.',
+      },
     },
     items: [
       {
