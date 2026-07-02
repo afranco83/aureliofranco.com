@@ -1,7 +1,9 @@
 ---
 import type { Translations } from '@/i18n/schema.ts';
 import Container from '../ui/Container.astro';
+import Heading from '../ui/Heading.astro';
 import Icon from '../ui/Icon.astro';
+import { REVEAL_CLASSES } from '@/styles/reveal.ts';
 
 type Props = {
   t: Translations['social'];
@@ -10,24 +12,41 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<section id="social" aria-label={t.label}>
-  <Container>
-    <ul class="flex justify-center gap-8 mb-32">
+<section id="social" aria-label={t.label} class="flex flex-col items-center gap-16 py-20">
+  <Container className="flex flex-col items-center gap-10 text-center">
+    <Heading title={t.title} description={t.description} align="center" reveal />
+
+    <a
+      href={t.email.href}
+      data-reveal
+      class={`inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold tracking-widest text-white uppercase transition-colors hover:bg-accent-dark ${REVEAL_CLASSES}`}
+    >
+      <Icon name="Message" size="sm" />
+      {t.email.label}
+    </a>
+
+    <ul data-reveal-stagger class="flex flex-wrap justify-center gap-10">
       {
-        t.items.map((item) => (
-          <li>
+        t.items.map((item, index) => (
+          <li data-reveal class={REVEAL_CLASSES} style={`--stagger-index: ${index}`}>
             <a
-              class="hover:text-accent"
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={item.title}
+              class="flex flex-col items-center gap-2 text-subtle transition-colors hover:text-accent"
             >
-              <Icon name={item.icon} size="xl" className="size-8 lg:size-12" />
+              <Icon name={item.icon} size="lg" />
+              <span class="text-xs font-medium tracking-widest uppercase">{item.title}</span>
             </a>
           </li>
         ))
       }
     </ul>
   </Container>
+
+  <p class="flex items-center gap-1.5 text-xs text-subtle">
+    {t.madeWith}
+    <Icon name="HeartFilled" size="xs" className="text-red-500" />
+    {t.madeBy}
+  </p>
 </section>

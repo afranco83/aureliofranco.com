@@ -22,7 +22,12 @@ const minimalValidTranslations = {
   claim: { text: 'Claim' },
   social: {
     label: 'Label',
+    title: 'Title',
+    description: 'Description',
+    email: { label: 'Email me', href: 'mailto:test@example.com' },
     items: [{ title: 'Social', icon: validIcon, href: 'https://example.com' }],
+    madeWith: 'Made with',
+    madeBy: 'by Someone',
   },
 };
 

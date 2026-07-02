@@ -112,6 +112,12 @@ export const es = defineTranslations({
   },
   social: {
     label: 'Contacto',
+    title: 'Conectemos',
+    description: 'Encantado de conectar, compartir ideas o simplemente saludar.',
+    email: {
+      label: 'Escríbeme',
+      href: 'mailto:info@aureliofranco.com',
+    },
     items: [
       {
         title: 'WhatsApp',
@@ -128,11 +134,8 @@ export const es = defineTranslations({
         icon: 'Github',
         href: 'https://github.com/afranco83',
       },
-      {
-        title: 'Email',
-        icon: 'Message',
-        href: 'mailto:info@aureliofranco.com',
-      },
     ],
+    madeWith: 'Hecho con',
+    madeBy: 'por Aurelio Franco',
   },
 });

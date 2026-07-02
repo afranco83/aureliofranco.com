@@ -9,6 +9,7 @@ export const ICON_NAMES = [
   'Code',
   'Github',
   'Glass',
+  'HeartFilled',
   'Lamp',
   'LaptopDuotone',
   'LeaderDuotone',
