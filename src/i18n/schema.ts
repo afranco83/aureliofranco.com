@@ -57,7 +57,15 @@ export const translationsSchema = z.object({
   claim: textBlockSchema,
   social: z.object({
     label: text,
+    title: text,
+    description: text,
+    email: z.object({
+      label: text,
+      href: text,
+    }),
     items: z.array(socialItemSchema).min(1),
+    madeWith: text,
+    madeBy: text,
   }),
 });
 
