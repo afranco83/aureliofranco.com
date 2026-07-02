@@ -1,15 +1,17 @@
 ---
 import '../styles/global.css';
 import type { Locale } from '@/i18n/index.ts';
+import type { Translations } from '@/i18n/schema.ts';
 import Navbar from '@/components/Navbar.astro';
 
 type Props = {
   title?: string;
   description?: string;
   lang?: Locale;
+  nav: Translations['nav'];
 };
 
-const { title = 'Aurelio Franco', description = 'Frontend Developer', lang = 'es' } =
+const { title = 'Aurelio Franco', description = 'Frontend Developer', lang = 'es', nav } =
   Astro.props;
 
 const siteUrl = Astro.site?.href ?? 'https://www.aureliofranco.com/';
@@ -56,7 +58,7 @@ const jsonLd = JSON.stringify({
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="scroll-smooth scroll-pt-24 motion-reduce:scroll-auto">
   <head>
     <meta charset="UTF-8" />
     <script is:inline>
@@ -99,7 +101,7 @@ const jsonLd = JSON.stringify({
   </head>
 
   <body>
-    <Navbar lang={lang} />
+    <Navbar lang={lang} t={nav} />
     <main class="flex flex-col">
       <slot />
     </main>

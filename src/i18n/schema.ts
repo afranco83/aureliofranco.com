@@ -30,10 +30,19 @@ const socialItemSchema = z.object({
   href: text,
 });
 
+const navItemSchema = z.object({
+  href: text.startsWith('#'),
+  label: text,
+});
+
 export const translationsSchema = z.object({
   meta: z.object({
     title: text,
     description: text,
+  }),
+  nav: z.object({
+    menuLabel: text,
+    items: z.array(navItemSchema).min(1),
   }),
   hero: z.object({
     title: text,

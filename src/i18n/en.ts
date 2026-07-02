@@ -6,6 +6,16 @@ export const en = defineTranslations({
     description:
       'Frontend developer with 20+ years of experience in product, UX and technology. Specialist in React, TypeScript and applied AI.',
   },
+  nav: {
+    menuLabel: 'Navigation menu',
+    items: [
+      { href: '#hero', label: 'Home' },
+      { href: '#about', label: 'About' },
+      { href: '#how-to', label: 'How I Work' },
+      { href: '#stack', label: 'Stack' },
+      { href: '#social', label: 'Contact' },
+    ],
+  },
   hero: {
     title: 'Aurelio Franco',
     subtitle: 'From Idea to Interface',

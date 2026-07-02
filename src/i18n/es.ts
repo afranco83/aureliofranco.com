@@ -6,6 +6,16 @@ export const es = defineTranslations({
     description:
       'Frontend developer con más de 20 años de experiencia en producto, UX y tecnología. Especialista en React, TypeScript e IA aplicada.',
   },
+  nav: {
+    menuLabel: 'Menú de navegación',
+    items: [
+      { href: '#hero', label: 'Inicio' },
+      { href: '#about', label: 'Sobre mí' },
+      { href: '#how-to', label: 'Cómo trabajo' },
+      { href: '#stack', label: 'Tecnologías' },
+      { href: '#social', label: 'Contacto' },
+    ],
+  },
   hero: {
     title: 'Aurelio Franco',
     subtitle: 'De la idea a la interfaz',
