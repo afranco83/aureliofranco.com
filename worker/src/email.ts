@@ -1,5 +1,5 @@
 import { EmailMessage } from 'cloudflare:email';
-import { createMimeMessage } from 'mimetext';
+import { createMimeMessage, Mailbox } from 'mimetext';
 import type { ContactPayload, Env } from './types';
 
 // "from" es la dirección pública del dominio (alias con regla de
@@ -13,8 +13,9 @@ export const sendContactEmail = async (env: Env, payload: ContactPayload): Promi
   msg.setSender({ addr: FROM_ADDRESS, name: 'aureliofranco.com' });
   msg.setRecipient(env.CONTACT_DESTINATION_EMAIL);
   // Permite responder directamente a quien escribió el mensaje desde el
-  // cliente de correo, sin tener que copiar el email a mano.
-  msg.setHeader('Reply-To', payload.email);
+  // cliente de correo, sin tener que copiar el email a mano. setHeader()
+  // valida "Reply-To" como Mailbox, no admite un string plano.
+  msg.setHeader('Reply-To', new Mailbox(payload.email));
   msg.setSubject(`Nuevo mensaje de ${payload.fullName} desde aureliofranco.com`);
   msg.addMessage({
     contentType: 'text/plain',
