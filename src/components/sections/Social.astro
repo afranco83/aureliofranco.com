@@ -12,18 +12,23 @@ type Props = {
 const { t } = Astro.props;
 ---
 
-<section id="social" aria-label={t.label} class="flex flex-col items-center gap-16 py-20">
+<section
+  id="social"
+  aria-label={t.label}
+  class="flex min-h-dvh flex-col items-center justify-center gap-16 py-20"
+>
   <Container className="flex flex-col items-center gap-10 text-center">
     <Heading title={t.title} description={t.description} align="center" reveal />
 
-    <a
-      href={t.email.href}
-      data-reveal
-      class={`inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold tracking-widest text-white uppercase transition-colors hover:bg-accent-dark ${REVEAL_CLASSES}`}
-    >
-      <Icon name="Message" size="sm" />
-      {t.email.label}
-    </a>
+    <div data-reveal class={REVEAL_CLASSES}>
+      <a
+        href={t.email.href}
+        class="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold tracking-widest text-white uppercase transition-colors hover:bg-accent-dark"
+      >
+        <Icon name="Message" size="sm" />
+        {t.email.label}
+      </a>
+    </div>
 
     <ul data-reveal-stagger class="flex flex-wrap justify-center gap-10">
       {
@@ -44,7 +49,7 @@ const { t } = Astro.props;
     </ul>
   </Container>
 
-  <p class="flex items-center gap-1.5 text-xs text-subtle">
+  <p data-reveal class={`flex items-center gap-1.5 text-xs text-subtle ${REVEAL_CLASSES}`}>
     {t.madeWith}
     <Icon name="HeartFilled" size="xs" className="text-red-500" />
     {t.madeBy}
