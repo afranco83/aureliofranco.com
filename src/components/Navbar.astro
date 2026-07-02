@@ -157,6 +157,8 @@ const { lang, t } = Astro.props;
         if (isDesktopLink) {
           link.classList.toggle('nav-inactive', !showActive);
           if (showActive) link.classList.remove('text-white', 'text-foreground');
+        } else {
+          link.classList.toggle('text-foreground', !showActive);
         }
         link.classList.toggle('text-accent', showActive);
 
@@ -182,4 +184,8 @@ const { lang, t } = Astro.props;
       observer.observe(section);
     }
   }
+</script>
+
+<script>
+  import '@/scripts/menuReveal.ts';
 </script>
