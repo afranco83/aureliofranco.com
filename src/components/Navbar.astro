@@ -183,21 +183,6 @@ const { lang, t } = Astro.props;
     for (const section of sectionLinks.keys()) {
       observer.observe(section);
     }
-
-    // La última sección (Contacto) es demasiado corta y cercana al final del
-    // documento para que la línea central del observer llegue a cruzarla: al
-    // no haber scroll suficiente por debajo, nunca se marcaría como activa.
-    // Al llegar al final del documento, forzamos su enlace como activo.
-    const lastSectionLinks = [...sectionLinks.values()].at(-1);
-    if (lastSectionLinks) {
-      const checkBottom = () => {
-        const atBottom =
-          window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 1;
-        if (atBottom) setActive(lastSectionLinks);
-      };
-      window.addEventListener('scroll', checkBottom, { passive: true });
-      checkBottom();
-    }
   }
 </script>
 
