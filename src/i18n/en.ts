@@ -30,6 +30,10 @@ export const en = defineTranslations({
       '<p>Today I combine <strong>modern frontend development with artificial intelligence</strong> to streamline processes, improve decision-making and increase delivery efficiency across teams and projects.</p>',
       '<p>I enjoy turning complex ideas into clear, efficient and human-centered digital products.</p>',
     ],
+    cta: {
+      label: 'Download CV',
+      href: '/cv-aurelio-franco-en.pdf',
+    },
   },
   featuredClaim: {
     text: 'For more than 20 years, I have been building digital products by connecting <strong>strategy, user experience and technology</strong>.',

@@ -7,7 +7,12 @@ const minimalValidTranslations = {
   meta: { title: 'Title', description: 'Description' },
   nav: { menuLabel: 'Menu', items: [{ href: '#hero', label: 'Home' }] },
   hero: { title: 'Title', subtitle: 'Subtitle' },
-  aboutMe: { title: 'About', description: 'Description', text: ['Paragraph'] },
+  aboutMe: {
+    title: 'About',
+    description: 'Description',
+    text: ['Paragraph'],
+    cta: { label: 'Download CV', href: '/cv.pdf' },
+  },
   featuredClaim: { text: 'Claim' },
   howTo: {
     title: 'How to',

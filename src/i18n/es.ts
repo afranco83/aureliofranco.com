@@ -30,6 +30,10 @@ export const es = defineTranslations({
       '<p>Actualmente combino <strong>desarrollo frontend moderno e inteligencia artificial</strong> para acelerar procesos, optimizar la toma de decisiones y aumentar la capacidad de entrega de equipos y proyectos.</p>',
       '<p>Me motiva transformar ideas complejas en productos digitales claros, eficientes y centrados en las personas.</p>',
     ],
+    cta: {
+      label: 'Descargar CV',
+      href: '/cv-aurelio-franco-es.pdf',
+    },
   },
   featuredClaim: {
     text: 'Llevo más de 20 años construyendo productos digitales, conectando <strong>estrategia, experiencia de usuario y tecnología</strong>.',
