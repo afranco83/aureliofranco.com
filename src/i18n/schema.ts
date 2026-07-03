@@ -50,10 +50,13 @@ const contactFormSchema = z.object({
     message: contactFieldSchema,
   }),
   submitLabel: text,
+  turnstileLoadingLabel: text,
   status: z.object({
     sending: text,
     success: text,
-    error: text,
+    widgetBlocked: text,
+    tokenExpired: text,
+    serverError: text,
   }),
 });
 

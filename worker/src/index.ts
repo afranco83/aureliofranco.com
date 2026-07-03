@@ -35,9 +35,10 @@ export default {
     }
 
     const ip = request.headers.get('CF-Connecting-IP');
-    const turnstileOk = await verifyTurnstile(payload.turnstileToken, env.TURNSTILE_SECRET_KEY, ip);
-    if (!turnstileOk) {
-      return jsonResponse({ ok: false, error: 'turnstile_failed' }, 403);
+    const turnstileResult = await verifyTurnstile(payload.turnstileToken, env.TURNSTILE_SECRET_KEY, ip);
+    if (!turnstileResult.success) {
+      const error = turnstileResult.expired ? 'turnstile_expired' : 'turnstile_failed';
+      return jsonResponse({ ok: false, error }, 403);
     }
 
     try {
