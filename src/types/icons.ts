@@ -14,6 +14,7 @@ export const ICON_NAMES = [
   'LaptopDuotone',
   'LeaderDuotone',
   'Linkedin',
+  'LoadCircle',
   'Menu',
   'Message',
   'Structure',

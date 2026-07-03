@@ -75,6 +75,10 @@ export const translationsSchema = z.object({
   }),
   aboutMe: sectionSchema.extend({
     text: z.array(text).min(1),
+    cta: z.object({
+      label: text,
+      href: text,
+    }),
   }),
   featuredClaim: textBlockSchema,
   howTo: cardsSectionSchema,
