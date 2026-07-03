@@ -128,10 +128,14 @@ export const es = defineTranslations({
         message: { label: 'Mensaje', placeholder: 'Cuéntame en qué puedo ayudarte' },
       },
       submitLabel: 'Enviar',
+      turnstileLoadingLabel: 'Verificando…',
       status: {
         sending: 'Enviando…',
         success: 'Mensaje enviado. Gracias por escribir, te responderé pronto.',
-        error: 'No se ha podido enviar el mensaje. Inténtalo de nuevo en unos minutos.',
+        widgetBlocked:
+          'No se ha podido cargar la verificación anti-spam. Comprueba tu bloqueador de anuncios o desactiva las extensiones de privacidad para este sitio.',
+        tokenExpired: 'La verificación ha caducado. Vuelve a intentarlo.',
+        serverError: 'No se ha podido enviar el mensaje. Inténtalo de nuevo en unos minutos.',
       },
     },
     items: [

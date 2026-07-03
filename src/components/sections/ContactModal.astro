@@ -48,7 +48,12 @@ const TURNSTILE_SITE_KEY = '0x4AAAAAADuqABQ1aF_V1lg-';
 
     <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" class="sr-only" />
 
-    <div id="contact-turnstile" data-sitekey={TURNSTILE_SITE_KEY}></div>
+    <div
+      id="contact-turnstile"
+      data-sitekey={TURNSTILE_SITE_KEY}
+      data-loading-label={t.turnstileLoadingLabel}
+      class="flex min-h-16 items-center text-sm text-subtle"
+    ></div>
 
     <p
       role="status"
@@ -56,7 +61,9 @@ const TURNSTILE_SITE_KEY = '0x4AAAAAADuqABQ1aF_V1lg-';
       data-form-status
       data-status-sending={t.status.sending}
       data-status-success={t.status.success}
-      data-status-error={t.status.error}
+      data-status-widget-blocked={t.status.widgetBlocked}
+      data-status-token-expired={t.status.tokenExpired}
+      data-status-server-error={t.status.serverError}
       class="min-h-5 text-sm text-subtle"
     >
     </p>

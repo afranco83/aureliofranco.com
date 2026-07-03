@@ -128,10 +128,14 @@ export const en = defineTranslations({
         message: { label: 'Message', placeholder: 'Tell me how I can help' },
       },
       submitLabel: 'Send',
+      turnstileLoadingLabel: 'Verifying…',
       status: {
         sending: 'Sending…',
         success: "Message sent. Thanks for writing, I'll get back to you soon.",
-        error: "The message couldn't be sent. Please try again in a few minutes.",
+        widgetBlocked:
+          "The spam check couldn't load. Check your ad blocker or disable privacy extensions for this site.",
+        tokenExpired: 'The verification has expired. Please try again.',
+        serverError: "The message couldn't be sent. Please try again in a few minutes.",
       },
     },
     items: [
