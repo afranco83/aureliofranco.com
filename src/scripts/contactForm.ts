@@ -13,6 +13,15 @@ if (trigger && dialog && form && closeButton && statusEl && submitButton && turn
   let turnstileToken: string | undefined;
   let turnstileLoadPromise: Promise<void> | undefined;
 
+  // El botón solo se habilita cuando la verificación anti-spam se ha
+  // completado Y los campos cumplen las restricciones nativas del
+  // formulario (required/minlength/maxlength/type=email).
+  const updateSubmitState = () => {
+    submitButton.disabled = !turnstileToken || !form.checkValidity();
+  };
+
+  form.addEventListener('input', updateSubmitState);
+
   const loadTurnstile = (): Promise<void> => {
     if (window.turnstile) return Promise.resolve();
 
@@ -51,12 +60,15 @@ if (trigger && dialog && form && closeButton && statusEl && submitButton && turn
           sitekey: turnstileContainer.dataset.sitekey ?? '',
           callback: (token) => {
             turnstileToken = token;
+            updateSubmitState();
           },
           'error-callback': () => {
             turnstileToken = undefined;
+            updateSubmitState();
           },
           'expired-callback': () => {
             turnstileToken = undefined;
+            updateSubmitState();
           },
         });
       }
@@ -141,7 +153,7 @@ if (trigger && dialog && form && closeButton && statusEl && submitButton && turn
       if (turnstileWidgetId !== undefined) window.turnstile?.reset(turnstileWidgetId);
       turnstileToken = undefined;
     } finally {
-      submitButton.disabled = false;
+      updateSubmitState();
     }
   });
 }
