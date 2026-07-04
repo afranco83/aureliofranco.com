@@ -30,7 +30,7 @@ const { t } = Astro.props;
         ))}
       </div>
     </div>
-    <div data-reveal class={REVEAL_CLASSES}>
+    <div data-reveal class={`flex justify-center md:justify-start ${REVEAL_CLASSES}`}>
       <a
         href={t.cta.href}
         download
