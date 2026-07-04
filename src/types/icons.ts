@@ -22,3 +22,5 @@ export const ICON_NAMES = [
 ] as const;
 
 export type IconName = (typeof ICON_NAMES)[number];
+
+export const ICON_SPRITE_VERSION = '5b27bd51';
