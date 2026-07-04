@@ -1,5 +1,5 @@
 ---
-import type { IconName } from '@/types/icons.ts';
+import { ICON_SPRITE_VERSION, type IconName } from '@/types/icons.ts';
 import { twMerge } from 'tailwind-merge';
 
 type Props = {
@@ -35,5 +35,5 @@ const sizeClass = {
   role={title ? 'img' : 'presentation'}
 >
   {title && <title>{title}</title>}
-  <use href={`/icons.svg#${name}`}></use>
+  <use href={`/icons.svg?v=${ICON_SPRITE_VERSION}#${name}`}></use>
 </svg>

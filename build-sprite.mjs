@@ -1,6 +1,7 @@
 // build-sprite.mjs
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 
 const iconsDir = path.join(process.cwd(), 'src/icons');
 const outputFile = path.join(process.cwd(), 'public/icons.svg');
@@ -53,6 +54,14 @@ try {
 
   const iconNames = files.map((file) => path.basename(file, '.svg')).sort();
 
+  // Hash del contenido: fuerza a los navegadores/CDNs a pedir icons.svg de
+  // nuevo cuando cambia, en vez de servir una versión cacheada desactualizada.
+  const spriteVersion = crypto
+    .createHash('md5')
+    .update(spriteContent)
+    .digest('hex')
+    .slice(0, 8);
+
   const typesFile = path.join(process.cwd(), 'src/types/icons.ts');
 
   const typeContent = `
@@ -62,6 +71,8 @@ ${iconNames.map((name) => `  '${name}',`).join('\n')}
 ] as const;
 
 export type IconName = (typeof ICON_NAMES)[number];
+
+export const ICON_SPRITE_VERSION = '${spriteVersion}';
 `;
 
   fs.writeFileSync(typesFile, typeContent);
